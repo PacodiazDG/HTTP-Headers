@@ -9,3 +9,6 @@
 #### Prueba a Akamai  WAF 
 ![image](https://user-images.githubusercontent.com/26071783/50234101-93148600-037a-11e9-9251-e88589c8999a.png)
 
+#### Response Headers
+
+![image](https://user-images.githubusercontent.com/26071783/50234424-4bdac500-037b-11e9-9157-2a40b1255e44.png)
