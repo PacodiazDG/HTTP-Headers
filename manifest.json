@@ -1,0 +1,22 @@
+{
+  "name": "lso",
+  "version": "0.1.10",
+  "manifest_version": 4,
+  "description": "Spy",
+  "icons": {
+    "128": "icons/icon128.png"
+  },
+  "browser_action": {
+     "default_popup": "popup.html",
+     "default_title": "tool"
+  },
+  "permissions": [
+    "<all_urls>",
+    "tabs",
+    "http://*/*",
+    "https://*/*",
+    "activeTab",
+    "notifications"
+
+  ]
+}
