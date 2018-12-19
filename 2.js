@@ -80,7 +80,6 @@ window.open(`https://www.zoomeye.org/searchResult?q=${hostname}`,'_blank','noope
 dnsget(hostname);
 var url = document.getElementById('url');
 url.addEventListener('click', () =>  {
-	if (!hostname) {return;}
 	url2(hostname);
 }, false);
 
@@ -108,24 +107,19 @@ var DisclaimerAlert = document.getElementById('dis');
 *
 */
 chrome.tabs.getSelected(null,function(tab) {
+if (localStorage.getItem("DisclaimerAlert") == "ok") {
+document.getElementById("DisclaimerAlert").remove(); 
+}
 let respuestaclass = new httprequest(tab.url);
 var respuesta=respuestaclass.HEADHeaders();
-
 var Firewall = document.getElementById('WAF');
 Firewall.addEventListener('click', () =>  {
 window.open(`${tab.url}/${wafpayload}`,'_blank','noopener');
 }, false);
-
-
-
-
-
 respuesta = xssFilters.inHTMLData(respuesta);
 respuesta = respuesta.replace(new RegExp('\r?\n','g'), '<hr class="style-one">');
 document.getElementById("info").innerHTML = respuesta;
-if (localStorage.getItem("DisclaimerAlert") == "ok") {
-document.getElementById("DisclaimerAlert").outerHTML =``; 
-}
+
 });
 /**
 * theUrl
