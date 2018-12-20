@@ -67,7 +67,7 @@ function url2(host) {
 
 chrome.tabs.query({active: true, currentWindow: true}, function (tabs) {
 const hostname = getHostname(tabs[0].url);
-
+dnsget(hostname);
 let CDN = document.getElementById('CDN');
 CDN.addEventListener('click', () =>  {
 window.open(`https://www.shodan.io/search?query=${hostname}`,'_blank','noopener');
@@ -75,13 +75,11 @@ window.open(`https://dnsdumpster.com/`,'_blank','noopener');
 window.open(`https://censys.io/ipv4/help?q=${hostname}`,'_blank','noopener');
 window.open(`https://www.zoomeye.org/searchResult?q=${hostname}`,'_blank','noopener');
 }, false);
-
-
-dnsget(hostname);
 var url = document.getElementById('url');
 url.addEventListener('click', () =>  {
 	url2(hostname);
 }, false);
+
 
 /*
 * XSS test 

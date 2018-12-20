@@ -1,0 +1,124 @@
+#let,
+body {
+    color: #fff;
+    display: block
+}
+
+.aec,
+body {
+    margin: 10px auto;
+    text-align: center
+}
+
+#let,
+.area,
+body {
+    display: block
+}
+
+body {
+    min-width: 200px;
+    width: auto;
+    border-radius: 4px;
+    background-color: hsla(0, 0%, 0%, .95)!important;
+    border-color: #121316!important
+}
+
+#let {
+    font-family: 'Over the Rainbow', cursive;
+    font-size: 25px
+}
+
+.button,
+button {
+    box-shadow: 0 0 20px #055da2;
+    border: 1px solid #1689ff;
+    width: 100%
+}
+
+.button.secondary {
+    background-color: hsla(188, 100%, 50%, .16)!important
+}
+
+h3 {
+    color: #a5a7ba;
+    font-family: Montserrat, sans-serif
+}
+
+.aec {
+    border: 0;
+    color: #fff;
+    font-size: 14px!important;
+    width: 100%;
+    height: auto;
+    font-weight: 400;
+    padding: .5em;
+    font-family: 'Over the Rainbow', cursive
+}
+
+.area {
+    white-space: pre-wrap;
+    text-align: left;
+    word-wrap: break-word background-color: #1f2023
+}
+
+hr.style1 {
+    border-top: 1px solid #fff
+}
+
+.form-control {
+    color: #fdfeff;
+    background-color: #171717
+}
+
+.btn-outline-secondary:hover {
+    color: #efefef;
+    background-color: #3503ff;
+    border-color: #fbfbfb
+}
+
+hr.style-one {
+    border: 0;
+    height: 1px;
+    background: #333;
+    background-image: linear-gradient(to right, #ccc, #333, #ccc)
+}
+
+.lds-hourglass {
+    display: inline-block;
+    position: relative;
+    width: 64px;
+    height: 64px
+}
+
+.lds-hourglass:after {
+    content: " ";
+    display: block;
+    border-radius: 50%;
+    width: 0;
+    height: 0;
+    margin: 6px;
+    box-sizing: border-box;
+    border: 26px solid #fff;
+    border-color: #fff transparent;
+    animation: lds-hourglass 1.2s infinite
+}
+
+@keyframes lds-hourglass {
+    0% {
+        transform: rotate(0);
+        animation-timing-function: cubic-bezier(.55, .055, .675, .19)
+    }
+    50% {
+        transform: rotate(900deg);
+        animation-timing-function: cubic-bezier(.215, .61, .355, 1)
+    }
+    100% {
+        transform: rotate(1800deg)
+    }
+}
+
+.br {
+ margin-bottom: 1em;
+ display: block;
+  }
