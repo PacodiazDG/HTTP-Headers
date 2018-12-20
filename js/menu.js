@@ -94,7 +94,11 @@ let nmap = document.getElementById('Nmap');
 nmap.addEventListener('click', () =>  {
 hackertarget(hostname);
 }, false);
-
+/******************************************************************************/
+let sqlmap = document.getElementById('sqlmap');
+sqlmap.addEventListener('click', () =>  {
+SQLinjection();
+}, false);
 /******************************************************************************/
 
 var xss = document.getElementById('xss');
@@ -138,5 +142,24 @@ function hackertarget(host) {
       let respuestaclass = new httprequest(`http://api.hackertarget.com/nmap/?q=${host}`);
       var rsq=respuestaclass.GET();
       document.getElementById("info").innerHTML = xssFilters.inHTMLData(rsq);
+}
+/******************************************************************************/
+function SQLinjection() {
+  const DOM=`<form method="post" target="_blank" action="https://suip.biz/?act=sqlmap" enctype="multipart/form-data">
+            <table style="width: 100%"  class="table table-dark">
+                <tbody><tr>
+                    <td style="width: 146px">URL:</td>
+                    <td><input name="page" type="text"  class="form-control" style="width: 100%"></td></tr>
+                    <tr><td style="width: 146px">&nbsp;</td>
+                    <td>
+                        <input name="Reset1" type="reset" value="Reset"  class="btn btn-light" style="width: 97px">
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input name="Submit1" type="submit" value="Submit" class="btn btn-success" style="width: 157px">
+                            &nbsp; </span>
+                    </td></tr>
+            </tbody></table>
+        </form>`;
+ document.getElementById("info").innerHTML = (DOM);
+
 }
 /******************************************************************************/
