@@ -53,7 +53,7 @@ h3 {
     height: auto;
     font-weight: 400;
     padding: .5em;
-    font-family: 'Over the Rainbow', cursive
+font-family: 'Roboto', sans-serif;
 }
 
 .area {
@@ -73,7 +73,7 @@ hr.style1 {
 
 .btn-outline-secondary:hover {
     color: #efefef;
-    background-color: #3503ff;
+    background-color: #ff0018;
     border-color: #fbfbfb
 }
 
@@ -120,5 +120,4 @@ hr.style-one {
 
 .br {
  margin-bottom: 1em;
- display: block;
   }
