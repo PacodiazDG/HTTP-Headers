@@ -1,4 +1,6 @@
 
+/******************************************************************************/
+
 const wafpayload=`\x3F\x66\x69\x72\x65\x77\x61\x6C\x6C
 \x74\x65\x73\x74\x3F\x3D\x65\x6E\x76\x20\x78\x3D\x27
 \x28\x29\x20\x7B\x20\x3A\x3B\x7D\x3B\x20\x65\x63\x68
@@ -14,6 +16,7 @@ const wafpayload=`\x3F\x66\x69\x72\x65\x77\x61\x6C\x6C
 \x32\x30\x2F\x2A\x5C\x22\x26\x26\x58\x53\x53\x3D\x3C
 \x73\x63\x72\x69\x70\x74\x3E\x61\x6C\x65\x72\x74\x28
 \x31\x29\x3C\x2F\x73\x63\x72\x69\x70\x74\x3E\x26\x26`;
+/******************************************************************************/
 
 class httprequest {
   constructor (url){
@@ -43,7 +46,9 @@ class httprequest {
     }
   }
 }
-//* dns get 
+
+/******************************************************************************/
+
 function dnsget(argument) {
         try {
         	let respuestaclass = new httprequest(`https://getip.pulsazen.com/dns.php?url=${xssFilters.inHTMLData(argument)}`);
@@ -54,6 +59,7 @@ function dnsget(argument) {
           document.getElementById("ip").innerHTML = `Url: ${argument}`;
         }
 }
+/******************************************************************************/
 
 function url2(host) {
  var input = document.createElement('textarea');
@@ -64,6 +70,7 @@ function url2(host) {
  document.execCommand('Copy');
  input.remove();
 }
+/******************************************************************************/
 
 chrome.tabs.query({active: true, currentWindow: true}, function (tabs) {
 const hostname = getHostname(tabs[0].url);
@@ -75,35 +82,35 @@ window.open(`https://dnsdumpster.com/`,'_blank','noopener');
 window.open(`https://censys.io/ipv4/help?q=${hostname}`,'_blank','noopener');
 window.open(`https://www.zoomeye.org/searchResult?q=${hostname}`,'_blank','noopener');
 }, false);
+/******************************************************************************/
+
 var url = document.getElementById('url');
 url.addEventListener('click', () =>  {
 	url2(hostname);
 }, false);
+/******************************************************************************/
 
+let nmap = document.getElementById('Nmap');
+nmap.addEventListener('click', () =>  {
+hackertarget(hostname);
+}, false);
 
-/*
-* XSS test 
-*
-*/
+/******************************************************************************/
+
 var xss = document.getElementById('xss');
 xss.addEventListener('click', () =>  {
              window.open(`https://raw.githubusercontent.com/Pgaijin66/XSS-Payloads/master/payload.txt`,'_blank','noopener');
 }, false);
-/**
-* DisclaimerAlert
-*
-*/
+/******************************************************************************/
+
 var DisclaimerAlert = document.getElementById('dis');
        DisclaimerAlert.addEventListener('click', () =>  {
        localStorage.setItem("DisclaimerAlert", "ok");
        alert("ok");
 }, false);
-//termina
 });
-/**
-* chrome
-*
-*/
+/******************************************************************************/
+
 chrome.tabs.getSelected(null,function(tab) {
 if (localStorage.getItem("DisclaimerAlert") == "ok") {
 document.getElementById("DisclaimerAlert").remove(); 
@@ -119,13 +126,17 @@ respuesta = respuesta.replace(new RegExp('\r?\n','g'), '<hr class="style-one">')
 document.getElementById("info").innerHTML = respuesta;
 
 });
-/**
-* theUrl
-*
-*/
+/******************************************************************************/
+
 function getHostname(url) {
     var url = new URL(url);
     return url.hostname;
 }
+/******************************************************************************/
 
-
+function hackertarget(host) {
+      let respuestaclass = new httprequest(`http://api.hackertarget.com/nmap/?q=${host}`);
+      var rsq=respuestaclass.GET();
+      document.getElementById("info").innerHTML = xssFilters.inHTMLData(rsq);
+}
+/******************************************************************************/
