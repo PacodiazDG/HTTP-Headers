@@ -187,12 +187,12 @@ function ct(hostname) {
     var rsq = JSON.parse(rsq);
     var result = rsq.activity;
     for (var key in rsq.activity) {
-      document.getElementById("info").innerHTML += `<div class="br">${
+      document.getElementById("info").innerHTML += `<div class="br"><p class="text-primary">${
         rsq.activity[key].name_value
-      } <div>`;
+      }</p> <div>`;
     }
   } catch (e) {
-    document.getElementById("info").innerHTML = `Url: ${e}`;
+    document.getElementById("info").innerHTML = `<p class="text-danger">${e}</p>`;
   }
 }
 /******************************************************************************/
