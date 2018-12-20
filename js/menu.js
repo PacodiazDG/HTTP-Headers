@@ -51,9 +51,9 @@ class httprequest {
 
 function dnsget(argument) {
         try {
-        	let respuestaclass = new httprequest(`https://getip.pulsazen.com/dns.php?url=${xssFilters.inHTMLData(argument)}`);
+        	var respuestaclass = new httprequest(`https://getip.pulsazen.com/dns.php?url=${xssFilters.inHTMLData(argument)}`);
         	var rsq=respuestaclass.GET();
-        	var rsq = JSON.parse(rsq);
+          rsq = JSON.parse(rsq);
         	document.getElementById("ip").innerHTML = `IP: ${rsq['0']['ip']}`;
         }catch (e){
           document.getElementById("ip").innerHTML = `Url: ${argument}`;
@@ -84,7 +84,7 @@ window.open(`https://www.zoomeye.org/searchResult?q=${hostname}`,'_blank','noope
 }, false);
 /******************************************************************************/
 
-var url = document.getElementById('url');
+let url = document.getElementById('url');
 url.addEventListener('click', () =>  {
 	url2(hostname);
 }, false);
@@ -108,13 +108,13 @@ ct(hostname);
 }, false);
 /******************************************************************************/
 
-var xss = document.getElementById('xss');
+let xss = document.getElementById('xss');
 xss.addEventListener('click', () =>  {
              window.open(`https://raw.githubusercontent.com/Pgaijin66/XSS-Payloads/master/payload.txt`,'_blank','noopener');
 }, false);
 /******************************************************************************/
 
-var DisclaimerAlert = document.getElementById('dis');
+let DisclaimerAlert = document.getElementById('dis');
        DisclaimerAlert.addEventListener('click', () =>  {
        localStorage.setItem("DisclaimerAlert", "ok");
        alert("ok");
@@ -126,12 +126,15 @@ chrome.tabs.getSelected(null,function(tab) {
 if (localStorage.getItem("DisclaimerAlert") == "ok") {
 document.getElementById("DisclaimerAlert").remove(); 
 }
-let respuestaclass = new httprequest(tab.url);
+var respuestaclass = new httprequest(tab.url);
 var respuesta=respuestaclass.HEADHeaders();
-var Firewall = document.getElementById('WAF');
+/******************************************************************************/
+let Firewall = document.getElementById('WAF');
 Firewall.addEventListener('click', () =>  {
 window.open(`${tab.url}/${wafpayload}`,'_blank','noopener');
 }, false);
+/******************************************************************************/
+
 respuesta = xssFilters.inHTMLData(respuesta);
 respuesta = respuesta.replace(new RegExp('\r?\n','g'), '<hr class="style-one">');
 document.getElementById("info").innerHTML = respuesta;
@@ -184,8 +187,7 @@ function ct(hostname) {
     var rsq = respuestaclass.GET();
     rsq = rsq.replace(/}{/g, "},{");
     rsq = `{"activity":[ ${rsq} ],"count":2} `;
-    var rsq = JSON.parse(rsq);
-    var result = rsq.activity;
+    rsq = JSON.parse(rsq);
     for (var key in rsq.activity) {
       document.getElementById("info").innerHTML += `<div class="br"><p class="text-primary">${
         rsq.activity[key].name_value
