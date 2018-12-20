@@ -99,6 +99,13 @@ let sqlmap = document.getElementById('sqlmap');
 sqlmap.addEventListener('click', () =>  {
 SQLinjection();
 }, false);
+
+/******************************************************************************/
+
+let dns = document.getElementById('dns');
+dns.addEventListener('click', () =>  {
+ct(hostname);
+}, false);
 /******************************************************************************/
 
 var xss = document.getElementById('xss');
@@ -146,7 +153,7 @@ function hackertarget(host) {
 /******************************************************************************/
 function SQLinjection() {
   const DOM=`<form method="post" target="_blank" action="https://suip.biz/?act=sqlmap" enctype="multipart/form-data">
-            <table style="width: 100%"  class="table table-dark">
+            <table style="width: 100%" class="table table-dark">
                 <tbody><tr>
                     <td style="width: 146px">URL:</td>
                     <td><input name="page" type="text"  class="form-control" style="width: 100%"></td></tr>
@@ -161,5 +168,31 @@ function SQLinjection() {
         </form>`;
  document.getElementById("info").innerHTML = (DOM);
 
+}
+/******************************************************************************/
+function ct(hostname) {
+        if (!/^[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9](?:\.[a-zA-Z]{2,})+$/.test(hostname)) {
+            alert("No es un dominio");
+            return -1;
+        }
+  try {
+    var dns = hostname.match(/[^\.]*\.[^.]*$/)[0];
+    document.getElementById("info").innerHTML = `DNs`;
+    let respuestaclass = new httprequest(
+      `https://crt.sh/?q=%.${dns}&output=json`
+    );
+    var rsq = respuestaclass.GET();
+    rsq = rsq.replace(/}{/g, "},{");
+    rsq = `{"activity":[ ${rsq} ],"count":2} `;
+    var rsq = JSON.parse(rsq);
+    var result = rsq.activity;
+    for (var key in rsq.activity) {
+      document.getElementById("info").innerHTML += `<div class="br">${
+        rsq.activity[key].name_value
+      } <div>`;
+    }
+  } catch (e) {
+    document.getElementById("info").innerHTML = `Url: ${e}`;
+  }
 }
 /******************************************************************************/
