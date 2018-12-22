@@ -119,5 +119,12 @@ hr.style-one {
 }
 
 .br {
- margin-bottom: 1em;
+  display: block;
+   margin: 10px 0;
   }
+.btn-outline-secondary {
+    color: #6c757d ; 
+    background-color: #010942ba  ;
+    background-image: none ;
+    border-color: #ffffff ;
+}
