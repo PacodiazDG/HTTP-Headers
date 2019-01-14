@@ -1,3 +1,4 @@
+"use strict";
 
 /******************************************************************************/
 
@@ -75,7 +76,7 @@ function url2(host) {
 chrome.tabs.query({active: true, currentWindow: true}, function (tabs) {
 const hostname = getHostname(tabs[0].url);
 dnsget(hostname);
-let CDN = document.getElementById('CDN');
+var CDN = document.getElementById('CDN');
 CDN.addEventListener('click', () =>  {
 window.open(`https://www.shodan.io/search?query=${hostname}`,'_blank','noopener');
 window.open(`https://dnsdumpster.com/`,'_blank','noopener');
@@ -84,37 +85,37 @@ window.open(`https://www.zoomeye.org/searchResult?q=${hostname}`,'_blank','noope
 }, false);
 /******************************************************************************/
 
-let url = document.getElementById('url');
+var url = document.getElementById('url');
 url.addEventListener('click', () =>  {
 	url2(hostname);
 }, false);
 /******************************************************************************/
 
-let nmap = document.getElementById('Nmap');
+var nmap = document.getElementById('Nmap');
 nmap.addEventListener('click', () =>  {
 hackertarget(hostname);
 }, false);
 /******************************************************************************/
-let sqlmap = document.getElementById('sqlmap');
+var sqlmap = document.getElementById('sqlmap');
 sqlmap.addEventListener('click', () =>  {
 SQLinjection();
 }, false);
 
 /******************************************************************************/
 
-let dns = document.getElementById('dns');
+var dns = document.getElementById('dns');
 dns.addEventListener('click', () =>  {
 ct(hostname);
 }, false);
 /******************************************************************************/
 
-let xss = document.getElementById('xss');
+var xss = document.getElementById('xss');
 xss.addEventListener('click', () =>  {
              window.open(`https://raw.githubusercontent.com/Pgaijin66/XSS-Payloads/master/payload.txt`,'_blank','noopener');
 }, false);
 /******************************************************************************/
 
-let DisclaimerAlert = document.getElementById('dis');
+var DisclaimerAlert = document.getElementById('dis');
        DisclaimerAlert.addEventListener('click', () =>  {
        localStorage.setItem("DisclaimerAlert", "ok");
        alert("ok");
@@ -129,7 +130,7 @@ document.getElementById("DisclaimerAlert").remove();
 var respuestaclass = new httprequest(tab.url);
 var respuesta=respuestaclass.HEADHeaders();
 /******************************************************************************/
-let Firewall = document.getElementById('WAF');
+var Firewall = document.getElementById('WAF');
 Firewall.addEventListener('click', () =>  {
 window.open(`${tab.url}/${wafpayload}`,'_blank','noopener');
 }, false);
@@ -185,14 +186,15 @@ function ct(hostname) {
       `https://crt.sh/?q=%.${dns}&output=json`
     );
     var rsq = respuestaclass.GET();
-    rsq = rsq.replace(/}{/g, "},{");
-    rsq = `{"activity":[ ${rsq} ],"count":2} `;
-    rsq = JSON.parse(rsq);
-    for (var key in rsq.activity) {
-      document.getElementById("info").innerHTML += `<div class="br"><p class="text-primary">${
-        rsq.activity[key].name_value
+        rsq = JSON.parse(rsq);
+    console.log(rsq);
+    var length = Object.keys(rsq).length; 
+    for (var i = 0; i < length; i++) {
+    console.log(rsq[i]['name_value']);
+        document.getElementById("info").innerHTML += `<div class="br"><p class="text-primary">${
+        rsq[i]['name_value']
       }</p> <div>`;
-    }
+  }
   } catch (e) {
     document.getElementById("info").innerHTML = `<p class="text-danger">${e}</p>`;
   }
