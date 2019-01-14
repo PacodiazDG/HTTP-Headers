@@ -176,7 +176,7 @@ function SQLinjection() {
 /******************************************************************************/
 function ct(hostname) {
         if (!/^[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9](?:\.[a-zA-Z]{2,})+$/.test(hostname)) {
-            alert("No es un dominio");
+        	document.getElementById("info").innerHTML = `<p class="text-danger">No es un Dominio</p>`;
             return -1;
         }
   try {
