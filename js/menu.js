@@ -52,7 +52,7 @@ class httprequest {
 
 function dnsget(argument) {
         try {
-        	var respuestaclass = new httprequest(`https://getip.pulsazen.com/dns.php?url=${xssFilters.inHTMLData(argument)}`);
+        	var respuestaclass = new httprequest(`https://getip.pulsazen.com/dns.php?url=${argument}`);
         	var rsq=respuestaclass.GET();
           rsq = JSON.parse(rsq);
         	document.getElementById("ip").innerHTML = `IP: ${rsq['0']['ip']}`;
@@ -108,13 +108,6 @@ dns.addEventListener('click', () =>  {
 ct(hostname);
 }, false);
 /******************************************************************************/
-
-var xss = document.getElementById('xss');
-xss.addEventListener('click', () =>  {
-             window.open(`https://raw.githubusercontent.com/Pgaijin66/XSS-Payloads/master/payload.txt`,'_blank','noopener');
-}, false);
-/******************************************************************************/
-
 var DisclaimerAlert = document.getElementById('dis');
        DisclaimerAlert.addEventListener('click', () =>  {
        localStorage.setItem("DisclaimerAlert", "ok");
@@ -125,14 +118,16 @@ var DisclaimerAlert = document.getElementById('dis');
 
 chrome.tabs.getSelected(null,function(tab) {
 if (localStorage.getItem("DisclaimerAlert") == "ok") {
-document.getElementById("DisclaimerAlert").remove(); 
+document.getElementById("DisclaimerAlert").remove();
 }
 var respuestaclass = new httprequest(tab.url);
 var respuesta=respuestaclass.HEADHeaders();
 /******************************************************************************/
 var Firewall = document.getElementById('WAF');
 Firewall.addEventListener('click', () =>  {
-window.open(`${tab.url}/${wafpayload}`,'_blank','noopener');
+var wafurl= tab.url;
+wafurl= wafurl.split('#')[0];
+window.open(`${wafurl}/${wafpayload}`,'_blank','noopener');
 }, false);
 /******************************************************************************/
 
@@ -188,7 +183,7 @@ function ct(hostname) {
     var rsq = respuestaclass.GET();
         rsq = JSON.parse(rsq);
     console.log(rsq);
-    var length = Object.keys(rsq).length; 
+    var length = Object.keys(rsq).length;
     for (var i = 0; i < length; i++) {
     console.log(rsq[i]['name_value']);
         document.getElementById("info").innerHTML += `<div class="br"><p class="text-primary">${
