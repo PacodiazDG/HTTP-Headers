@@ -1,5 +1,4 @@
 "use strict";
-
 /******************************************************************************/
 if(localStorage.getItem("status")==null){
   localStorage.setItem("status", "false");
@@ -9,7 +8,6 @@ document.getElementById("Debugger").checked = false;
 }else{
 document.getElementById("Debugger").checked = true;
 }
-
 $(document).ready(function(){
   $('[data-toggle="tooltip"]').tooltip();   
 });
@@ -29,7 +27,6 @@ const wafpayload=`\x3F\x66\x69\x72\x65\x77\x61\x6C\x6C
 \x73\x63\x72\x69\x70\x74\x3E\x61\x6C\x65\x72\x74\x28
 \x31\x29\x3C\x2F\x73\x63\x72\x69\x70\x74\x3E\x26\x26`;
 /******************************************************************************/
-
 class httprequest {
   constructor (url,methods){
     this.url = url;
@@ -53,7 +50,6 @@ var methods2=this.methods;
     });
   }
 }
-
 /******************************************************************************/
 async function dnsget(argument) {
         try {
@@ -101,7 +97,6 @@ var sqlmap = document.getElementById('sqlmap');
 sqlmap.addEventListener('click', () =>  {
 SQLinjection();
 }, false);
-
 /******************************************************************************/
 var Debugger = document.getElementById('Debugger');
 Debugger.addEventListener('click', () =>  {
@@ -112,14 +107,11 @@ Debugger.addEventListener('click', () =>  {
     localStorage.setItem("status", "false");
   }
 }, false);
-
 /******************************************************************************/
-
 var dns = document.getElementById('dns');
 dns.addEventListener('click', () =>  {
 ct(hostname);
 }, false);
-
 /******************************************************************************/
 var DisclaimerAlert = document.getElementById('dis');
        DisclaimerAlert.addEventListener('click', () =>  {
@@ -128,12 +120,10 @@ var DisclaimerAlert = document.getElementById('dis');
 }, false);
 });
 /******************************************************************************/
-
 chrome.tabs.getSelected(null,function(tab) {
 if (localStorage.getItem("DisclaimerAlert") == "ok") {
 document.getElementById("DisclaimerAlert").remove();
 }
-
 //HEADHeaders
 header(tab.url);
 /******************************************************************************/
@@ -144,16 +134,13 @@ wafurl= wafurl.split('#')[0];
 window.open(`${wafurl}/${wafpayload}`,'_blank','noopener');
 }, false);
 /******************************************************************************/
-
 });
 /******************************************************************************/
-
 function getHostname(url) {
     var url = new URL(url);
     return url.hostname;
 }
 /******************************************************************************/
-
 async function hackertarget(host) {
       let respuestaclass = new httprequest(`http://api.hackertarget.com/nmap/?q=${host}`,"GET");
       var rsq=await respuestaclass.httpsend();
@@ -176,7 +163,6 @@ function SQLinjection() {
             </tbody></table>
         </form>`;
  document.getElementById("info").innerHTML = (DOM);
-
 }
 /******************************************************************************/
 async function ct(hostname) {
@@ -206,9 +192,6 @@ async function ct(hostname) {
 }
 /******************************************************************************/
 // Url decode
-
-
-
 /******************************************************************************/
 async function header(url) {
 try{
@@ -220,7 +203,5 @@ document.getElementById("info").innerHTML = (respuesta);
 }
 catch(e){
   document.getElementById("info").innerHTML = (e);
-
 }
-
 }
