@@ -41,7 +41,6 @@ var url2= this.url;
 var methods2=this.methods;
   return new Promise(function (resolve, reject,url) {
         let xhr = new XMLHttpRequest();
-console.log(url2);
         xhr.open(methods2, url2);
         xhr.onload = function () {
             if (this.readyState == 4) {
@@ -215,7 +214,6 @@ async function header(url) {
 try{
   var respuestaclass = new httprequest(url,"HEAD");
 var respuesta= await respuestaclass.httpsend();
-console.log(respuesta);
 respuesta = xssFilters.inHTMLData(respuesta.getAllResponseHeaders());
 respuesta = respuesta.replace(new RegExp('\r?\n','g'), '<hr class="style-one">');
 document.getElementById("info").innerHTML = (respuesta);
