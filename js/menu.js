@@ -1,7 +1,18 @@
 "use strict";
 
 /******************************************************************************/
+if(localStorage.getItem("status")==null){
+  localStorage.setItem("status", "false");
+}
+if(localStorage.getItem("status")=="false"){
+document.getElementById("Debugger").checked = false;
+}else{
+document.getElementById("Debugger").checked = true;
+}
 
+$(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip();   
+});
 const wafpayload=`\x3F\x66\x69\x72\x65\x77\x61\x6C\x6C
 \x74\x65\x73\x74\x3F\x3D\x65\x6E\x76\x20\x78\x3D\x27
 \x28\x29\x20\x7B\x20\x3A\x3B\x7D\x3B\x20\x65\x63\x68
@@ -20,48 +31,42 @@ const wafpayload=`\x3F\x66\x69\x72\x65\x77\x61\x6C\x6C
 /******************************************************************************/
 
 class httprequest {
-  constructor (url){
+  constructor (url,methods){
     this.url = url;
+        this.methods = methods;
   }
-
- HEADHeaders(url) {
- try {
-        let request = new XMLHttpRequest();
-        request.open('HEAD', this.url, false);
-        request.send(null);
-        return request.getAllResponseHeaders();
-    } catch (e) {
-        return e;
-    }
-  }
-
- GET(url) {
- try {
-  let xmlHttp = new XMLHttpRequest();
-  xmlHttp.open("GET", this.url, false);
-  xmlHttp.send(null);
-  return xmlHttp.responseText;
-    } catch (e) {
-    	console.log(e);
-        return e;
-    }
+ httpsend(url,methods) {
+document.getElementById("info").innerHTML = `<div class="loader">Loading...</div>`;
+var url2= this.url;
+var methods2=this.methods;
+  return new Promise(function (resolve, reject,url) {
+        let xhr = new XMLHttpRequest();
+console.log(url2);
+        xhr.open(methods2, url2);
+        xhr.onload = function () {
+            if (this.readyState == 4) {
+                resolve(xhr);
+            } else {
+                reject("Error");
+            }
+        };
+        xhr.send();
+    });
   }
 }
 
 /******************************************************************************/
-
-function dnsget(argument) {
+async function dnsget(argument) {
         try {
-        	var respuestaclass = new httprequest(`https://getip.pulsazen.com/dns.php?url=${argument}`);
-        	var rsq=respuestaclass.GET();
-          rsq = JSON.parse(rsq);
-        	document.getElementById("ip").innerHTML = `IP: ${rsq['0']['ip']}`;
+        	var respuestaclass = new httprequest(`https://api.shodan.io/dns/resolve?key=MM72AkzHXdHpC8iP65VVEEVrJjp7zkgd&hostnames=${argument}`,"GET");
+        	var rsq= await respuestaclass.httpsend();
+          rsq = JSON.parse(rsq.responseText);
+        	document.getElementById("ip").innerHTML = `IP: ${rsq[argument]}`;
         }catch (e){
-          document.getElementById("ip").innerHTML = `Url: ${argument}`;
+          document.getElementById("ip").innerHTML = `<span class="badge badge-danger">Error</span>`;
         }
 }
 /******************************************************************************/
-
 function url2(host) {
  var input = document.createElement('textarea');
  document.body.appendChild(input);
@@ -72,7 +77,6 @@ function url2(host) {
  input.remove();
 }
 /******************************************************************************/
-
 chrome.tabs.query({active: true, currentWindow: true}, function (tabs) {
 const hostname = getHostname(tabs[0].url);
 dnsget(hostname);
@@ -84,13 +88,11 @@ window.open(`https://censys.io/ipv4/help?q=${hostname}`,'_blank','noopener');
 window.open(`https://www.zoomeye.org/searchResult?q=${hostname}`,'_blank','noopener');
 }, false);
 /******************************************************************************/
-
 var url = document.getElementById('url');
 url.addEventListener('click', () =>  {
 	url2(hostname);
 }, false);
 /******************************************************************************/
-
 var nmap = document.getElementById('Nmap');
 nmap.addEventListener('click', () =>  {
 hackertarget(hostname);
@@ -102,11 +104,23 @@ SQLinjection();
 }, false);
 
 /******************************************************************************/
+var Debugger = document.getElementById('Debugger');
+Debugger.addEventListener('click', () =>  {
+  var ok = document.getElementById("Debugger");
+  if (ok.checked) {
+    localStorage.setItem("status", "true");
+  } else {
+    localStorage.setItem("status", "false");
+  }
+}, false);
+
+/******************************************************************************/
 
 var dns = document.getElementById('dns');
 dns.addEventListener('click', () =>  {
 ct(hostname);
 }, false);
+
 /******************************************************************************/
 var DisclaimerAlert = document.getElementById('dis');
        DisclaimerAlert.addEventListener('click', () =>  {
@@ -120,8 +134,9 @@ chrome.tabs.getSelected(null,function(tab) {
 if (localStorage.getItem("DisclaimerAlert") == "ok") {
 document.getElementById("DisclaimerAlert").remove();
 }
-var respuestaclass = new httprequest(tab.url);
-var respuesta=respuestaclass.HEADHeaders();
+
+//HEADHeaders
+header(tab.url);
 /******************************************************************************/
 var Firewall = document.getElementById('WAF');
 Firewall.addEventListener('click', () =>  {
@@ -130,10 +145,6 @@ wafurl= wafurl.split('#')[0];
 window.open(`${wafurl}/${wafpayload}`,'_blank','noopener');
 }, false);
 /******************************************************************************/
-
-respuesta = xssFilters.inHTMLData(respuesta);
-respuesta = respuesta.replace(new RegExp('\r?\n','g'), '<hr class="style-one">');
-document.getElementById("info").innerHTML = respuesta;
 
 });
 /******************************************************************************/
@@ -144,10 +155,10 @@ function getHostname(url) {
 }
 /******************************************************************************/
 
-function hackertarget(host) {
-      let respuestaclass = new httprequest(`http://api.hackertarget.com/nmap/?q=${host}`);
-      var rsq=respuestaclass.GET();
-      document.getElementById("info").innerHTML = xssFilters.inHTMLData(rsq);
+async function hackertarget(host) {
+      let respuestaclass = new httprequest(`http://api.hackertarget.com/nmap/?q=${host}`,"GET");
+      var rsq=await respuestaclass.httpsend();
+      document.getElementById("info").innerHTML = xssFilters.inHTMLData(rsq.responseText);
 }
 /******************************************************************************/
 function SQLinjection() {
@@ -169,7 +180,7 @@ function SQLinjection() {
 
 }
 /******************************************************************************/
-function ct(hostname) {
+async function ct(hostname) {
         if (!/^[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9](?:\.[a-zA-Z]{2,})+$/.test(hostname)) {
         	document.getElementById("info").innerHTML = `<p class="text-danger">No es un Dominio</p>`;
             return -1;
@@ -179,14 +190,14 @@ function ct(hostname) {
     document.getElementById("info").innerHTML = `DNs`;
     let respuestaclass = new httprequest(
       `https://crt.sh/?q=%.${dns}&output=json`
-    );
-    var rsq = respuestaclass.GET();
-        rsq = JSON.parse(rsq);
-    console.log(rsq);
+      ,"GET"
+      );
+    var rsq = await respuestaclass.httpsend();
+        rsq = JSON.parse(rsq.responseText);
     var length = Object.keys(rsq).length;
     for (var i = 0; i < length; i++) {
     console.log(rsq[i]['name_value']);
-        document.getElementById("info").innerHTML += `<div class="br"><p class="text-primary">${
+        document.getElementById("info").innerHTML = `<div class="br"><p class="text-primary">${
         rsq[i]['name_value']
       }</p> <div>`;
   }
@@ -195,3 +206,23 @@ function ct(hostname) {
   }
 }
 /******************************************************************************/
+// Url decode
+
+
+
+/******************************************************************************/
+async function header(url) {
+try{
+  var respuestaclass = new httprequest(url,"HEAD");
+var respuesta= await respuestaclass.httpsend();
+console.log(respuesta);
+respuesta = xssFilters.inHTMLData(respuesta.getAllResponseHeaders());
+respuesta = respuesta.replace(new RegExp('\r?\n','g'), '<hr class="style-one">');
+document.getElementById("info").innerHTML = (respuesta);
+}
+catch(e){
+  document.getElementById("info").innerHTML = (e);
+
+}
+
+}

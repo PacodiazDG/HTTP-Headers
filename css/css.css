@@ -1,6 +1,6 @@
 #let,
 body {
-    color: #fff;
+    color: #000;
     display: block
 }
 
@@ -20,7 +20,7 @@ body {
     min-width: 200px;
     width: auto;
     border-radius: 4px;
-    background-color: hsla(0, 0%, 0%, .95)!important;
+    background-color: hsla(0, 0%, 100%, 0.95)!important;
     border-color: #121316!important
 }
 
@@ -47,7 +47,7 @@ h3 {
 
 .aec {
     border: 0;
-    color: #fff;
+    color: #000;
     font-size: 14px!important;
     width: 100%;
     height: auto;
@@ -84,6 +84,10 @@ hr.style-one {
     background-image: linear-gradient(to right, #ccc, #333, #ccc)
 }
 
+
+
+
+
 .lds-hourglass {
     display: inline-block;
     position: relative;
@@ -99,8 +103,8 @@ hr.style-one {
     height: 0;
     margin: 6px;
     box-sizing: border-box;
-    border: 26px solid #fff;
-    border-color: #fff transparent;
+    border: 26px solid #000;
+    border-color: #000 transparent;
     animation: lds-hourglass 1.2s infinite
 }
 
@@ -118,6 +122,10 @@ hr.style-one {
     }
 }
 
+
+
+
+
 .br {
   display: block;
    margin: 10px 0;
@@ -128,3 +136,21 @@ hr.style-one {
     background-image: none ;
     border-color: #ffffff ;
 }
+
+
+.tool {
+    color: #aaa;
+    cursor: pointer;
+    fill: #aaa;
+    margin-left: 0.8em;
+    min-width: 1em;
+    padding: 0 0.2em;
+    unicode-bidi: embed;
+    visibility: hidden;
+}
+.fa-icon {
+      cursor: pointer;
+letter-spacing: 7pt;
+    font-size: 150%;
+}
+
