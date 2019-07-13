@@ -1,9 +1,6 @@
 "use strict";
 /******************************************************************************/
-if(localStorage.getItem("status")==null){
-  localStorage.setItem("status", "false");
-}
-if(localStorage.getItem("status")=="false"){
+if(localStorage.getItem("status")==="false"){
 document.getElementById("Debugger").checked = false;
 }else{
 document.getElementById("Debugger").checked = true;
@@ -11,21 +8,6 @@ document.getElementById("Debugger").checked = true;
 $(document).ready(function(){
   $('[data-toggle="tooltip"]').tooltip();   
 });
-const wafpayload=`\x3F\x66\x69\x72\x65\x77\x61\x6C\x6C
-\x74\x65\x73\x74\x3F\x3D\x65\x6E\x76\x20\x78\x3D\x27
-\x28\x29\x20\x7B\x20\x3A\x3B\x7D\x3B\x20\x65\x63\x68
-\x6F\x20\x49\x44\x53\x2F\x49\x50\x53\x27\x20\x62\x61
-\x73\x68\x20\x2D\x63\x20\x5C\x22\x49\x50\x53\x74\x65
-\x73\x74\x5C\x22\x2F\x2F\x2F\x26\x26\x26\x26\x57\x41
-\x46\x3D\x5C\x22\x5C\x22\x29\x2C\x4E\x55\x4C\x4C\x2C
-\x4E\x55\x4C\x4C\x2C\x4E\x55\x4C\x4C\x2C\x4E\x55\x4C
-\x4C\x2C\x4E\x55\x4C\x4C\x2C\x4E\x55\x4C\x4C\x2C\x4E
-\x55\x4C\x4C\x2C\x4E\x55\x4C\x4C\x29\x25\x32\x30\x77
-\x61\x69\x74\x66\x6F\x72\x25\x32\x30\x64\x65\x6C\x61
-\x79\x25\x32\x30\x27\x30\x3A\x30\x3A\x32\x30\x27\x25
-\x32\x30\x2F\x2A\x5C\x22\x26\x26\x58\x53\x53\x3D\x3C
-\x73\x63\x72\x69\x70\x74\x3E\x61\x6C\x65\x72\x74\x28
-\x31\x29\x3C\x2F\x73\x63\x72\x69\x70\x74\x3E\x26\x26`;
 /******************************************************************************/
 class httprequest {
   constructor (url,methods){
@@ -40,13 +22,13 @@ var methods2=this.methods;
         let xhr = new XMLHttpRequest();
         xhr.open(methods2, url2);
         xhr.onload = function () {
-            if (this.readyState == 4) {
+            if (this.readyState === 4) {
                 resolve(xhr);
             } else {
                 reject("Error");
             }
         };
-        xhr.send();
+        xhr.send(null);
     });
   }
 }
@@ -56,7 +38,7 @@ async function dnsget(argument) {
         	var respuestaclass = new httprequest(`https://api.shodan.io/dns/resolve?key=MM72AkzHXdHpC8iP65VVEEVrJjp7zkgd&hostnames=${argument}`,"GET");
         	var rsq= await respuestaclass.httpsend();
           rsq = JSON.parse(rsq.responseText);
-        	document.getElementById("ip").innerHTML = `IP: ${rsq[argument]}`;
+        	document.getElementById("ip").innerHTML = `<i class="oi oi-globe"></i> ${rsq[argument]}`;
         }catch (e){
           document.getElementById("ip").innerHTML = `<span class="badge badge-danger">Error</span>`;
         }
@@ -131,7 +113,39 @@ var Firewall = document.getElementById('WAF');
 Firewall.addEventListener('click', () =>  {
 var wafurl= tab.url;
 wafurl= wafurl.split('#')[0];
-window.open(`${wafurl}/${wafpayload}`,'_blank','noopener');
+
+var local = localStorage.getItem("waflevel");
+var wafpayload1 = '?a=<a>alert();</a>';
+var wafpayload2 = '?<script>alert(document.cookie);</script>';
+var wafpayload3=`\x3F\x66\x69\x72\x65\x77\x61\x6C\x6C
+\x74\x65\x73\x74\x3F\x3D\x65\x6E\x76\x20\x78\x3D\x27
+\x28\x29\x20\x7B\x20\x3A\x3B\x7D\x3B\x20\x65\x63\x68
+\x6F\x20\x49\x44\x53\x2F\x49\x50\x53\x27\x20\x62\x61
+\x73\x68\x20\x2D\x63\x20\x5C\x22\x49\x50\x53\x74\x65
+\x73\x74\x5C\x22\x2F\x2F\x2F\x26\x26\x26\x26\x57\x41
+\x46\x3D\x5C\x22\x5C\x22\x29\x2C\x4E\x55\x4C\x4C\x2C
+\x4E\x55\x4C\x4C\x2C\x4E\x55\x4C\x4C\x2C\x4E\x55\x4C
+\x4C\x2C\x4E\x55\x4C\x4C\x2C\x4E\x55\x4C\x4C\x2C\x4E
+\x55\x4C\x4C\x2C\x4E\x55\x4C\x4C\x29\x25\x32\x30\x77
+\x61\x69\x74\x66\x6F\x72\x25\x32\x30\x64\x65\x6C\x61
+\x79\x25\x32\x30\x27\x30\x3A\x30\x3A\x32\x30\x27\x25
+\x32\x30\x2F\x2A\x5C\x22\x26\x26\x58\x53\x53\x3D\x3C
+\x73\x63\x72\x69\x70\x74\x3E\x61\x6C\x65\x72\x74\x28
+\x31\x29\x3C\x2F\x73\x63\x72\x69\x70\x74\x3E\x26\x26`;
+
+switch (local) {
+  case '1':
+window.open(`${wafurl}/${wafpayload1}`,'_blank','noopener');
+    break;
+  case '2':
+window.open(`${wafurl}/${wafpayload2}`,'_blank','noopener');
+    break;
+  case '3':
+window.open(`${wafurl}/${wafpayload3}`,'_blank','noopener');
+    break;
+  default:
+    console.error("Error localstorage is not defined");
+}
 }, false);
 /******************************************************************************/
 });
