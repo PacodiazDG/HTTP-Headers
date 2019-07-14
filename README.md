@@ -11,4 +11,4 @@
 
 #### Response Headers
 
-![image](https://user-images.githubusercontent.com/26071783/50234424-4bdac500-037b-11e9-9157-2a40b1255e44.png)
+![image](https://user-images.githubusercontent.com/26071783/61178044-5ee10b00-a5d3-11e9-8378-3f3ac62b7af5.png)
