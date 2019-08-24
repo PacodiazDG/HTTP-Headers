@@ -12,7 +12,6 @@ class httprequest {
         this.methods = methods;
   }
  httpsend(url,methods) {
-document.getElementById("info").innerHTML = `<div class="loader">Loading...</div>`;
 var url2= this.url;
 var methods2=this.methods;
   return new Promise(function (resolve, reject,url) {
@@ -34,10 +33,33 @@ async function dnsget(argument) {
         try {
         	var respuestaclass = new httprequest(`https://api.shodan.io/dns/resolve?key=MM72AkzHXdHpC8iP65VVEEVrJjp7zkgd&hostnames=${argument}`,"GET");
         	var rsq= await respuestaclass.httpsend();
+          console.log(rsq);
           rsq = JSON.parse(rsq.responseText);
         	document.getElementById("ip").innerHTML = `<i class="oi oi-globe"></i> ${rsq[argument]}`;
+          return rsq[argument];
         }catch (e){
           document.getElementById("ip").innerHTML = `<span class="badge badge-danger">Error</span>`;
+        }
+}
+async function ipget(argument) {
+        try {
+          var awaitresponse= await argument;
+          var respuestaclass = new httprequest(`https://api.shodan.io/shodan/host/${awaitresponse}?key=MM72AkzHXdHpC8iP65VVEEVrJjp7zkgd&minify=true`,"GET");
+          var rsq= await respuestaclass.httpsend();
+          console.log(rsq);
+if (rsq.status!=200){
+  console.error(rsq)
+    console.error(argument)
+  return;
+}
+rsq = JSON.parse(rsq.responseText);
+console.log(rsq['isp']);
+document.getElementById("infodns").innerHTML += `<p style="font-size:14px;">ISP: ${rsq['isp']}</p>`;
+document.getElementById("infodns").innerHTML += `<p style="font-size:14px;">Country name: ${rsq['country_name']}</p>`;
+document.getElementById("infodns").innerHTML += `<p style="font-size:14px;">ORG: ${rsq['org']}</p>`;
+document.getElementById("infodns").innerHTML += `<p style="font-size:19px;"><a href="https://www.shodan.io/host/${awaitresponse}" target="_blank" rel="noopener noreferrer">Shodan</a></p>`;
+        }catch (e){
+       console.error(e)
         }
 }
 /******************************************************************************/
@@ -53,7 +75,8 @@ function url2(host) {
 /******************************************************************************/
 chrome.tabs.query({active: true, currentWindow: true}, function (tabs) {
 const hostname = getHostname(tabs[0].url);
-dnsget(hostname);
+var ipad=dnsget(hostname);
+ipget(ipad);
 var CDN = document.getElementById('CDN');
 CDN.addEventListener('click', () =>  {
 window.open(`https://www.shodan.io/search?query=${hostname}`,'_blank','noopener');
@@ -206,6 +229,8 @@ async function ct(hostname) {
 /******************************************************************************/
 async function header(url) {
 try{
+  document.getElementById("info").innerHTML = `<div class="loader">Loading...</div>`;
+
   var respuestaclass = new httprequest(url,"HEAD");
 var respuesta= await respuestaclass.httpsend();
 respuesta = xssFilters.inHTMLData(respuesta.getAllResponseHeaders());
