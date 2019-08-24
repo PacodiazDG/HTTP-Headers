@@ -52,11 +52,14 @@ if (rsq.status!=200){
     console.error(argument)
   return;
 }
-rsq = JSON.parse(rsq.responseText);
+rsq = JSON.parse(rsq.responseText)
 console.log(rsq['isp']);
 document.getElementById("infodns").innerHTML += `<p style="font-size:14px;">ISP: ${rsq['isp']}</p>`;
 document.getElementById("infodns").innerHTML += `<p style="font-size:14px;">Country name: ${rsq['country_name']}</p>`;
 document.getElementById("infodns").innerHTML += `<p style="font-size:14px;">ORG: ${rsq['org']}</p>`;
+document.getElementById("infodns").innerHTML += `<p style="font-size:14px;">IP: ${rsq['ip_str']}</p>`;
+document.getElementById("infodns").innerHTML += `<p style="font-size:14px;"><a href="http://${rsq['hostnames'][0]}" target="_blank" rel="noopener noreferrer">${rsq['hostnames'][0]}</a></p>`;
+
 document.getElementById("infodns").innerHTML += `<p style="font-size:19px;"><a href="https://www.shodan.io/host/${awaitresponse}" target="_blank" rel="noopener noreferrer">Shodan</a></p>`;
         }catch (e){
        console.error(e)
