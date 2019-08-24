@@ -5,9 +5,6 @@ document.getElementById("Debugger").checked = false;
 }else{
 document.getElementById("Debugger").checked = true;
 }
-$(document).ready(function(){
-  $('[data-toggle="tooltip"]').tooltip();   
-});
 /******************************************************************************/
 class httprequest {
   constructor (url,methods){
