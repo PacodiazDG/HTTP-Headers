@@ -48,8 +48,6 @@ async function ipget(argument) {
           var rsq= await respuestaclass.httpsend();
           console.log(rsq);
 if (rsq.status!=200){
-  console.error(rsq)
-    console.error(argument)
   return;
 }
 rsq = JSON.parse(rsq.responseText)
