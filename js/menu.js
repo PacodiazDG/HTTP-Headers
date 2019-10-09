@@ -35,18 +35,27 @@ async function dnsget(argument) {
         	var rsq= await respuestaclass.httpsend();
           console.log(rsq);
           rsq = JSON.parse(rsq.responseText);
+          if(rsq[argument]==null){
+          document.getElementById("ip").innerHTML = `<span class="badge badge-danger">Shodan doesn't solve the host</span>`;
+return -1;
+          }
+
+
         	document.getElementById("ip").innerHTML = `<i class="oi oi-globe"></i> ${rsq[argument]}`;
-          return rsq[argument];
+          return  rsq[argument];
         }catch (e){
           document.getElementById("ip").innerHTML = `<span class="badge badge-danger">Error</span>`;
         }
 }
-async function ipget(argument) {
+/******************************************************************************/
+async function ipget( argument) {
         try {
-          var awaitresponse= await argument;
-          var respuestaclass = new httprequest(`https://api.shodan.io/shodan/host/${awaitresponse}?key=MM72AkzHXdHpC8iP65VVEEVrJjp7zkgd&minify=true`,"GET");
+          if (await argument=="-1"){
+            document.getElementById("infodns").innerHTML +=  `<span class="badge badge-danger">Shodan doesn't solve the host</span>`;
+return 0;
+          }
+          var respuestaclass = new httprequest(`https://api.shodan.io/shodan/host/${await argument}?key=MM72AkzHXdHpC8iP65VVEEVrJjp7zkgd&minify=true`,"GET");
           var rsq= await respuestaclass.httpsend();
-          console.log(rsq);
 if (rsq.status!=200){
   return;
 }
@@ -55,10 +64,20 @@ console.log(rsq['isp']);
 document.getElementById("infodns").innerHTML += `<p style="font-size:14px;">ISP: ${rsq['isp']}</p>`;
 document.getElementById("infodns").innerHTML += `<p style="font-size:14px;">Country name: ${rsq['country_name']}</p>`;
 document.getElementById("infodns").innerHTML += `<p style="font-size:14px;">ORG: ${rsq['org']}</p>`;
-document.getElementById("infodns").innerHTML += `<p style="font-size:14px;">IP: ${rsq['ip_str']}</p>`;
+document.getElementById("infodns").innerHTML += `<p style="font-size:14px;">IP: <a href="http://${rsq['ip_str']}" target="_blank" rel="noopener noreferrer">${rsq['ip_str']}</a></p>`;
 document.getElementById("infodns").innerHTML += `<p style="font-size:14px;"><a href="http://${rsq['hostnames'][0]}" target="_blank" rel="noopener noreferrer">${rsq['hostnames'][0]}</a></p>`;
+var i, x = "";
 
-document.getElementById("infodns").innerHTML += `<p style="font-size:19px;"><a href="https://www.shodan.io/host/${awaitresponse}" target="_blank" rel="noopener noreferrer">Shodan</a></p>`;
+document.getElementById("infodns").innerHTML += `<p style="font-size:19px;"><a href="https://www.shodan.io/host/${await argument}" target="_blank" rel="noopener noreferrer">Shodan</a></p>`;
+for (var i = 0; i < rsq.ports.length; i++) {
+  x = rsq.ports[i];
+document.getElementById("infodns").innerHTML += `<a href="https://www.shodan.io/host/${await argument}" target="_blank" rel="noopener noreferrer">
+<div class="Cuadrado"><p style="position: relative;top: 50%;transform: translateY(-50%);">${x}</p></div>
+</a>
+`;
+
+}
+document.getElementById("infodns").innerHTML += `<br style="clear:both" />`;
         }catch (e){
        console.error(e)
         }
@@ -76,8 +95,6 @@ function url2(host) {
 /******************************************************************************/
 chrome.tabs.query({active: true, currentWindow: true}, function (tabs) {
 const hostname = getHostname(tabs[0].url);
-var ipad=dnsget(hostname);
-ipget(ipad);
 var CDN = document.getElementById('CDN');
 CDN.addEventListener('click', () =>  {
 window.open(`https://www.shodan.io/search?query=${hostname}`,'_blank','toolbar=0,menubar=0,location=0');
@@ -128,32 +145,20 @@ if (localStorage.getItem("DisclaimerAlert") == "ok") {
 document.getElementById("DisclaimerAlert").remove();
 }
 //HEADHeaders
+var url = new URL(tab.url);
+var tabname = url.hostname;
 header(tab.url);
+var ipad=dnsget(tabname);
+ipget(ipad);
 /******************************************************************************/
 var Firewall = document.getElementById('WAF');
 Firewall.addEventListener('click', () =>  {
 var wafurl= tab.url;
 wafurl= wafurl.split('#')[0];
-
 var local = localStorage.getItem("waflevel");
 var wafpayload1 = '?a=<a>alert();</a>';
 var wafpayload2 = '?<script>alert(document.cookie);</script>';
-var wafpayload3=`\x3F\x66\x69\x72\x65\x77\x61\x6C\x6C
-\x74\x65\x73\x74\x3F\x3D\x65\x6E\x76\x20\x78\x3D\x27
-\x28\x29\x20\x7B\x20\x3A\x3B\x7D\x3B\x20\x65\x63\x68
-\x6F\x20\x49\x44\x53\x2F\x49\x50\x53\x27\x20\x62\x61
-\x73\x68\x20\x2D\x63\x20\x5C\x22\x49\x50\x53\x74\x65
-\x73\x74\x5C\x22\x2F\x2F\x2F\x26\x26\x26\x26\x57\x41
-\x46\x3D\x5C\x22\x5C\x22\x29\x2C\x4E\x55\x4C\x4C\x2C
-\x4E\x55\x4C\x4C\x2C\x4E\x55\x4C\x4C\x2C\x4E\x55\x4C
-\x4C\x2C\x4E\x55\x4C\x4C\x2C\x4E\x55\x4C\x4C\x2C\x4E
-\x55\x4C\x4C\x2C\x4E\x55\x4C\x4C\x29\x25\x32\x30\x77
-\x61\x69\x74\x66\x6F\x72\x25\x32\x30\x64\x65\x6C\x61
-\x79\x25\x32\x30\x27\x30\x3A\x30\x3A\x32\x30\x27\x25
-\x32\x30\x2F\x2A\x5C\x22\x26\x26\x58\x53\x53\x3D\x3C
-\x73\x63\x72\x69\x70\x74\x3E\x61\x6C\x65\x72\x74\x28
-\x31\x29\x3C\x2F\x73\x63\x72\x69\x70\x74\x3E\x26\x26`;
-
+var wafpayload3=`\x3F\x66\x69\x72\x65\x77\x61\x6C\x6C\x74\x65\x73\x74\x3F\x3D\x65\x6E\x76\x20\x78\x3D\x27\x28\x29\x20\x7B\x20\x3A\x3B\x7D\x3B\x20\x65\x63\x68\x6F\x20\x49\x44\x53\x2F\x49\x50\x53\x27\x20\x62\x61\x73\x68\x20\x2D\x63\x20\x5C\x22\x49\x50\x53\x74\x65\x73\x74\x5C\x22\x2F\x2F\x2F\x26\x26\x26\x26\x57\x41\x46\x3D\x5C\x22\x5C\x22\x29\x2C\x4E\x55\x4C\x4C\x2C\x4E\x55\x4C\x4C\x2C\x4E\x55\x4C\x4C\x2C\x4E\x55\x4C\x4C\x2C\x4E\x55\x4C\x4C\x2C\x4E\x55\x4C\x4C\x2C\x4E\x55\x4C\x4C\x2C\x4E\x55\x4C\x4C\x29\x25\x32\x30\x77\x61\x69\x74\x66\x6F\x72\x25\x32\x30\x64\x65\x6C\x61\x79\x25\x32\x30\x27\x30\x3A\x30\x3A\x32\x30\x27\x25\x32\x30\x2F\x2A\x5C\x22\x26\x26\x58\x53\x53\x3D\x3C\x73\x63\x72\x69\x70\x74\x3E\x61\x6C\x65\x72\x74\x28\x31\x29\x3C\x2F\x73\x63\x72\x69\x70\x74\x3E\x26\x26`;
 switch (local) {
   case '1':
 window.open(`${wafurl}/${wafpayload1}`,'_blank','noopener');

@@ -83,11 +83,6 @@ hr.style-one {
     background: #333;
     background-image: linear-gradient(to right, #ccc, #333, #ccc)
 }
-
-
-
-
-
 .lds-hourglass {
     display: inline-block;
     position: relative;
@@ -122,10 +117,6 @@ hr.style-one {
     }
 }
 
-
-
-
-
 .br {
   display: block;
    margin: 10px 0;
@@ -136,8 +127,6 @@ hr.style-one {
     background-image: none ;
     border-color: #ffffff ;
 }
-
-
 .tool {
     color: #aaa;
     cursor: pointer;
@@ -152,5 +141,19 @@ hr.style-one {
       cursor: pointer;
 letter-spacing: 7pt;
     font-size: 150%;
+}
+.Cuadrado {
+    background-color: #0b00ff;
+    color: white;
+float: left; 
+display: inline-block;   
+ font-family: Arial;
+    font-size: 12px;
+    font-weight: bold;
+    height: 48px;
+    margin: 5px;
+    position: relative;
+    text-shadow: none;
+    width: 48px;
 }
 
