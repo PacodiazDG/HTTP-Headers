@@ -7,6 +7,6 @@ localStorage.setItem("Debugging5",false);
 localStorage.setItem("waflevel",1);
 localStorage.setItem("WAFNOTF",false);
 localStorage.setItem("status",false);
+localStorage.setItem("keyshodan","MM72AkzHXdHpC8iP65VVEEVrJjp7zkgd");
 localStorage.setItem("install",true);
-
 }

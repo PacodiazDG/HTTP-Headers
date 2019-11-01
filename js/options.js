@@ -11,12 +11,12 @@ document.getElementById(Debugging).checked = true;
 if(localStorage.getItem("WAFNOTF")=="true"){
 	document.getElementById("WAFNOTF").checked = true;
 }
-
 }
 /*******************************************************************************************/
-
 document.addEventListener('DOMContentLoaded', function() {
-	getactivelocalStorage();
+getactivelocalStorage();
+console.log(localStorage.getItem("shodanapikey"));
+document.getElementById('shodanapikey').value=localStorage.getItem("keyshodan");
 /*******************************************************************************************/
 var waflevel = document.getElementById('waflevel');
 waflevel.addEventListener('change', () => {
@@ -80,6 +80,11 @@ if (Debugging5.checked) {
   } else {
     localStorage.setItem("Debugging5", "false");
   }
+});
+/******************************************************************************************/
+var apikeyshodan = document.getElementById('shodanapikeygo');
+apikeyshodan.addEventListener('click', () => {
+    localStorage.setItem("keyshodan",(document.getElementById("shodanapikeygo").value));
 });
 /******************************************************************************************/
 });

@@ -1,4 +1,5 @@
 "use strict";
+const keyshodan=localStorage.getItem("keyshodan");
 /******************************************************************************/
 if(localStorage.getItem("status")==="false"){
 document.getElementById("Debugger").checked = false;
@@ -31,7 +32,7 @@ var methods2=this.methods;
 /******************************************************************************/
 async function dnsget(argument) {
         try {
-        	var respuestaclass = new httprequest(`https://api.shodan.io/dns/resolve?key=MM72AkzHXdHpC8iP65VVEEVrJjp7zkgd&hostnames=${argument}`,"GET");
+        	var respuestaclass = new httprequest(`https://api.shodan.io/dns/resolve?key=${keyshodan}&hostnames=${argument}`,"GET");
         	var rsq= await respuestaclass.httpsend();
           console.log(rsq);
           rsq = JSON.parse(rsq.responseText);
@@ -39,8 +40,6 @@ async function dnsget(argument) {
           document.getElementById("ip").innerHTML = `<span class="badge badge-danger">Shodan doesn't solve the host</span>`;
 return -1;
           }
-
-
         	document.getElementById("ip").innerHTML = `<i class="oi oi-globe"></i> ${rsq[argument]}`;
           return  rsq[argument];
         }catch (e){
@@ -54,7 +53,7 @@ async function ipget( argument) {
             document.getElementById("infodns").innerHTML +=  `<span class="badge badge-danger">Shodan doesn't solve the host</span>`;
 return 0;
           }
-          var respuestaclass = new httprequest(`https://api.shodan.io/shodan/host/${await argument}?key=MM72AkzHXdHpC8iP65VVEEVrJjp7zkgd&minify=true`,"GET");
+          var respuestaclass = new httprequest(`https://api.shodan.io/shodan/host/${await argument}?key=${keyshodan}&minify=true`,"GET");
           var rsq= await respuestaclass.httpsend();
 if (rsq.status!=200){
   return;
