@@ -97,6 +97,7 @@ const hostname = getHostname(tabs[0].url);
 var CDN = document.getElementById('CDN');
 CDN.addEventListener('click', () =>  {
 window.open(`https://www.shodan.io/search?query=${hostname}`,'_blank','toolbar=0,menubar=0,location=0');
+window.open(`https://securitytrails.com/domain/${hostname}/dns`,'_blank','toolbar=0,menubar=0,location=0');
 window.open(`https://dnsdumpster.com/`,'_blank','toolbar=0,menubar=0,location=0');
 window.open(`https://censys.io/ipv4/help?q=${hostname}`,'_blank','toolbar=0,menubar=0,location=0');
 window.open(`https://www.zoomeye.org/searchResult?q=${hostname}`,'_blank','toolbar=0,menubar=0,location=0');
@@ -125,11 +126,6 @@ Debugger.addEventListener('click', () =>  {
   } else {
     localStorage.setItem("status", "false");
   }
-}, false);
-/******************************************************************************/
-var dns = document.getElementById('dns');
-dns.addEventListener('click', () =>  {
-ct(hostname);
 }, false);
 /******************************************************************************/
 var DisclaimerAlert = document.getElementById('dis');
@@ -203,32 +199,7 @@ function SQLinjection() {
         </form>`;
  document.getElementById("info").innerHTML = (DOM);
 }
-/******************************************************************************/
-async function ct(hostname) {
-        if (!/^[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9](?:\.[a-zA-Z]{2,})+$/.test(hostname)) {
-        	document.getElementById("info").innerHTML = `<p class="text-danger">No es un Dominio</p>`;
-            return -1;
-        }
-  try {
-    var dns = hostname.match(/[^\.]*\.[^.]*$/)[0];
-    document.getElementById("info").innerHTML = `DNs`;
-    let respuestaclass = new httprequest(
-      `https://crt.sh/?q=%.${dns}&output=json`
-      ,"GET"
-      );
-    var rsq = await respuestaclass.httpsend();
-        rsq = JSON.parse(rsq.responseText);
-    var length = Object.keys(rsq).length;
-    for (var i = 0; i < length; i++) {
-    console.log(rsq[i]['name_value']);
-        document.getElementById("info").innerHTML = `<div class="br"><p class="text-primary">${
-        rsq[i]['name_value']
-      }</p> <div>`;
-  }
-  } catch (e) {
-    document.getElementById("info").innerHTML = `<p class="text-danger">${e}</p>`;
-  }
-}
+
 /******************************************************************************/
 // Url decode
 /******************************************************************************/
