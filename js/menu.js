@@ -53,7 +53,7 @@ async function ipget( argument) {
             document.getElementById("infodns").innerHTML +=  `<span class="badge badge-danger">Shodan doesn't solve the host</span>`;
 return 0;
           }
-          var respuestaclass = new httprequest(`https://api.shodan.io/shodan/host/${await argument}?key=${keyshodan}&minify=true`,"GET");
+          var respuestaclass = new httprequest(`https://api.shodan.io/shodan/host/${await argument}?key=${keyshodan}`,"GET");
           var rsq= await respuestaclass.httpsend();
 if (rsq.status!=200){
   return;
