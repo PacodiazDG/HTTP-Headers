@@ -64,9 +64,10 @@ document.getElementById("infodns").innerHTML += `<p style="font-size:14px;">ISP:
 document.getElementById("infodns").innerHTML += `<p style="font-size:14px;">Country name: ${rsq['country_name']}</p>`;
 document.getElementById("infodns").innerHTML += `<p style="font-size:14px;">ORG: ${rsq['org']}</p>`;
 document.getElementById("infodns").innerHTML += `<p style="font-size:14px;">IP: <a href="http://${rsq['ip_str']}" target="_blank" rel="noopener noreferrer">${rsq['ip_str']}</a></p>`;
+if(rsq['hostnames'][0]!=undefined){
 document.getElementById("infodns").innerHTML += `<p style="font-size:14px;"><a href="http://${rsq['hostnames'][0]}" target="_blank" rel="noopener noreferrer">${rsq['hostnames'][0]}</a></p>`;
+}
 var i, x = "";
-
 document.getElementById("infodns").innerHTML += `<p style="font-size:19px;"><a href="https://www.shodan.io/host/${await argument}" target="_blank" rel="noopener noreferrer">Shodan</a></p>`;
 for (var i = 0; i < rsq.ports.length; i++) {
   x = rsq.ports[i];
@@ -74,7 +75,6 @@ document.getElementById("infodns").innerHTML += `<a href="https://www.shodan.io/
 <div class="Cuadrado"><p style="position: relative;top: 50%;transform: translateY(-50%);">${x}</p></div>
 </a>
 `;
-
 }
 document.getElementById("infodns").innerHTML += `<br style="clear:both" />`;
         }catch (e){
@@ -200,8 +200,6 @@ function SQLinjection() {
  document.getElementById("info").innerHTML = (DOM);
 }
 
-/******************************************************************************/
-// Url decode
 /******************************************************************************/
 async function header(url) {
 try{
