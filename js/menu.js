@@ -99,7 +99,7 @@ CDN.addEventListener('click', () =>  {
 window.open(`https://www.shodan.io/search?query=${hostname}`,'_blank','toolbar=0,menubar=0,location=0');
 window.open(`https://securitytrails.com/domain/${hostname}/dns`,'_blank','toolbar=0,menubar=0,location=0');
 window.open(`https://dnsdumpster.com/`,'_blank','toolbar=0,menubar=0,location=0');
-window.open(`https://censys.io/ipv4/help?q=${hostname}`,'_blank','toolbar=0,menubar=0,location=0');
+window.open(`https://censys.io/ipv4?q=${hostname}&`,'_blank','toolbar=0,menubar=0,location=0');
 window.open(`https://www.zoomeye.org/searchResult?q=${hostname}`,'_blank','toolbar=0,menubar=0,location=0');
 }, false);
 /******************************************************************************/
