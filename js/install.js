@@ -9,4 +9,5 @@ localStorage.setItem("WAFNOTF",false);
 localStorage.setItem("status",false);
 localStorage.setItem("keyshodan","");
 localStorage.setItem("install",true);
+chrome.tabs.create({ url: "options.html" });
 }

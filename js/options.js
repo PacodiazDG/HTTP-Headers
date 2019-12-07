@@ -12,8 +12,13 @@ if(localStorage.getItem("WAFNOTF")=="true"){
 	document.getElementById("WAFNOTF").checked = true;
 }
 }
+
 /*******************************************************************************************/
 document.addEventListener('DOMContentLoaded', function() {
+if(localStorage.getItem("keyshodan")===""){
+    document.getElementById("apikeyi").innerText="To use shodan you need the api key";
+alert("To use shodan you need the api key")
+}
 getactivelocalStorage();
 console.log(localStorage.getItem("shodanapikey"));
 document.getElementById('shodanapikey').value=localStorage.getItem("keyshodan");
@@ -84,7 +89,7 @@ if (Debugging5.checked) {
 /******************************************************************************************/
 var apikeyshodan = document.getElementById('shodanapikeygo');
 apikeyshodan.addEventListener('click', () => {
-    localStorage.setItem("keyshodan",(document.getElementById("shodanapikeygo").value));
+    localStorage.setItem("keyshodan",(document.getElementById("shodanapikey").value));
 });
 /******************************************************************************************/
 });

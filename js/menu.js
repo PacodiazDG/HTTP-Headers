@@ -32,13 +32,14 @@ var methods2=this.methods;
 /******************************************************************************/
 async function dnsget(argument) {
         try {
-        	var respuestaclass = new httprequest(`https://api.shodan.io/dns/resolve?key=${keyshodan}&hostnames=${argument}`,"GET");
-        	var rsq= await respuestaclass.httpsend();
+        var respuestaclass,rsq;
+         respuestaclass = new httprequest(`https://api.shodan.io/dns/resolve?key=${keyshodan}&hostnames=${argument}`,"GET");
+          rsq= await respuestaclass.httpsend();
           console.log(rsq);
           rsq = JSON.parse(rsq.responseText);
           if(rsq[argument]==null){
           document.getElementById("ip").innerHTML = `<span class="badge badge-danger">Shodan doesn't solve the host</span>`;
-return -1;
+          return -1;
           }
         	document.getElementById("ip").innerHTML = `<i class="oi oi-globe"></i> ${rsq[argument]}`;
           return  rsq[argument];
@@ -131,7 +132,6 @@ Debugger.addEventListener('click', () =>  {
 var DisclaimerAlert = document.getElementById('dis');
        DisclaimerAlert.addEventListener('click', () =>  {
        localStorage.setItem("DisclaimerAlert", "ok");
-       alert("ok");
 }, false);
 });
 /******************************************************************************/
