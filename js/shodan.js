@@ -4,6 +4,9 @@
 */
 "use strict";
 const keyshodan=localStorage.getItem("keyshodan");
+const Enableshodan1=localStorage.getItem("Enableshodan1");
+
+/******************************************************************************/
 async function ipget(argument) {
     try {
         if (await argument == "-1") {
@@ -38,7 +41,16 @@ async function ipget(argument) {
         console.error(e)
     }
 }
+/******************************************************************************/
 async function dnsget(argument) {
+if(Enableshodan1==="false"){
+ document.getElementById("ip").innerHTML = `<span class="badge badge-warning">Shodan is disabled</span>`;
+  return -1;
+}
+if(keyshodan===""){
+ document.getElementById("ip").innerHTML = `<span class="badge badge-warning">There is no api key</span>`;
+  return -1;
+}
     try {
         var respuestaclass, rsq;
         respuestaclass = new httprequest(`https://api.shodan.io/dns/resolve?key=${keyshodan}&hostnames=${argument}`, "GET");
@@ -55,9 +67,11 @@ async function dnsget(argument) {
         document.getElementById("ip").innerHTML = `<span class="badge badge-danger">Error</span>`;
     }
 }
+/******************************************************************************/
 chrome.tabs.getSelected(null,function(tab) {
 var url = new URL(tab.url);
 var tabname = url.hostname;
 var ipad=dnsget(tabname);
 ipget(ipad);
 });
+/******************************************************************************/

@@ -1,8 +1,8 @@
 
-function getactivelocalStorage(){
+function getactivelocalStorage(namestorage,id){
 document.getElementById('waflevel').value=localStorage.getItem("waflevel");
-for (var i = 1; i < 7; i++) {
-var Debugging="Debugging"+i;
+for (var i = 1; i <= id; i++) {
+var Debugging=namestorage+i;
 console.log(Debugging);
 if(localStorage.getItem(Debugging)=="true"){
 document.getElementById(Debugging).checked = true;
@@ -19,8 +19,9 @@ if(localStorage.getItem("keyshodan")===""){
     document.getElementById("apikeyi").innerText="To use shodan you need the api key";
 alert("To use shodan you need the api key")
 }
-getactivelocalStorage();
-console.log(localStorage.getItem("shodanapikey"));
+getactivelocalStorage("Debugging",7);
+getactivelocalStorage("Enableshodan",1);
+
 document.getElementById('shodanapikey').value=localStorage.getItem("keyshodan");
 /*******************************************************************************************/
 var waflevel = document.getElementById('waflevel');
@@ -102,6 +103,15 @@ apikeyshodan.addEventListener('click', () => {
 localStorage.setItem("keyshodan",(document.getElementById("shodanapikey").value));
 var apikeyi = document.getElementById('apikeyi');
 apikeyi.remove();
+});
+/******************************************************************************************/
+var Enableshodan1 = document.getElementById('Enableshodan1');
+Enableshodan1.addEventListener('click', () => {
+if (Enableshodan1.checked) {
+    localStorage.setItem("Enableshodan1", "true");
+  } else {
+    localStorage.setItem("Enableshodan1", "false");
+  }
 });
 /******************************************************************************************/
 });
