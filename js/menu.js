@@ -109,6 +109,11 @@ url.addEventListener('click', () =>  {
 	url2(hostname);
 }, false);
 /******************************************************************************/
+var parms = document.getElementById('parms');
+parms.addEventListener('click', () =>  {
+  window.open(`param.html?q=${btoa(tabs[0].url)}`,'_blank');
+}, false);
+/******************************************************************************/
 var nmap = document.getElementById('Nmap');
 nmap.addEventListener('click', () =>  {
 hackertarget(hostname);
