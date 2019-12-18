@@ -1,28 +1,34 @@
 <!DOCTYPE html>
 <html>
-<head>
-<script src="./js/xss-filters.1.2.7.min.js"></script>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-<script type="text/javascript" src="./js/param.js"></script>
-	<title></title>
-</head>
-<body>
-<style type="text/css">
-body {
-    background: #000000 url(/img/1.gif);
-    color: #008000;
-      overflow-x: hidden;
 
+<head>
+  <script src="./js/xss-filters.1.2.7.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <script type="text/javascript" src="./js/param.js"></script>
+  <title></title>
+</head>
+
+<body>
+  <style type="text/css">
+body {
+  background: #000000 url(/img/1.gif);
+  color: #008000;
+  overflow-x: hidden;
 }
+
 .text {
   text-overflow: ellipsis;
 }
-</style>
-<div id="root"></div>
-<div class="form-group">
-<label for="url">URL:</label>
-<textarea class="form-control" rows="5" id="url" name="text"></textarea>
-</div>
-<button type="submit" class="btn btn-primary" id="Go">Edit</button>
+  </style>
+  <div id="root"></div>
+  <div class="form-group">
+    <label for="url">URL:</label>
+    <textarea class="form-control" rows="5" id="url" name="text"></textarea>
+  </div>
+  <div class="container text-center">
+    <button type="submit" class="btn btn-primary text-center" id="Go">Edit URL</button>
+  </div>
 </body>
+
 </html>
