@@ -19,7 +19,7 @@ class httprequest {
       xhr.onerror = function() {
         reject("Error");
       };
-      xhr.timeout = 4000;
+      xhr.timeout = 9000;
       xhr.ontimeout = function() {
         reject("Timed out!!!");
       }

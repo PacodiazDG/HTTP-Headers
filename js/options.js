@@ -121,7 +121,6 @@ document.addEventListener('DOMContentLoaded', () => {
 var comm=document.getElementById("varcommand").value;
 var re = new RegExp("/^([a-zA-Z_$])/$");
 if (comm.match(/^([a-zA-Z0-9_$]+)$/)) {
-  console.log("vdffdvdf");
   localStorage.setItem("varcommand", (comm));
  document.getElementById("dangerous").innerText = "";
   }else{
