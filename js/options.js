@@ -17,9 +17,11 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById("apikeyi").innerText = "To use shodan you need the api key";
     alert("To use shodan you need the api key")
   }
-  getactivelocalStorage("Debugging", 7);
+  getactivelocalStorage("Debugging", 8);
   getactivelocalStorage("Enableshodan", 1);
   document.getElementById('shodanapikey').value = localStorage.getItem("keyshodan");
+  document.getElementById('varcommand').value = localStorage.getItem("varcommand");
+
   /*******************************************************************************************/
   var waflevel = document.getElementById('waflevel');
   waflevel.addEventListener('change', () => {
@@ -94,6 +96,15 @@ document.addEventListener('DOMContentLoaded', () => {
       localStorage.setItem("Debugging6", "false");
     }
   });
+/*******************************************************************************************/
+  var Debugging7 = document.getElementById('Debugging7');
+  Debugging7.addEventListener('click', () => {
+    if (Debugging7.checked) {
+      localStorage.setItem("Debugging7", "true");
+    } else {
+      localStorage.setItem("Debugging7", "false");
+    }
+  });
   /******************************************************************************************/
   var apikeyshodan = document.getElementById('shodanapikeygo');
   apikeyshodan.addEventListener('click', () => {
@@ -101,6 +112,27 @@ document.addEventListener('DOMContentLoaded', () => {
     var apikeyi = document.getElementById('apikeyi');
     apikeyi.remove();
   });
+
+
+  /******************************************************************************************/
+
+  var _0x = document.getElementById('_0x');
+  _0x.addEventListener('click', () => {
+var comm=document.getElementById("varcommand").value;
+var re = new RegExp("/^([a-zA-Z_$])/$");
+if (comm.match(/^([a-zA-Z0-9_$]+)$/)) {
+  console.log("vdffdvdf");
+  localStorage.setItem("varcommand", (comm));
+ document.getElementById("dangerous").innerText = "";
+  }else{
+      console.log("4");
+
+   document.getElementById("dangerous").innerText = "not valid!!";
+return;
+  }
+  });
+
+
   /******************************************************************************************/
   var Enableshodan1 = document.getElementById('Enableshodan1');
   Enableshodan1.addEventListener('click', () => {
