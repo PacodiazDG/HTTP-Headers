@@ -128,7 +128,7 @@ eval("var "+b+"=undefined;")
 	return;
 }else{
     chrome.browserAction.setBadgeText({
-    'text': '' //an empty string displays nothing!
+    'text': ''  
 });
 }
 
