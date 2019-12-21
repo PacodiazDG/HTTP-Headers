@@ -9,6 +9,8 @@ document.getElementsByTagName('head')[0].appendChild(script);`
 }
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo) {
 if(localStorage.getItem("status")==="true"){
+    chrome.browserAction.setBadgeText( { text: "!" } );
+chrome.browserAction.setBadgeBackgroundColor({color: "red"});
 	 	 if (changeInfo.status === 'complete') {
 
 if(localStorage.getItem("Debugging1")=="true"){
@@ -103,11 +105,34 @@ enableContextMenu();`;
             allFrames: true, 
             code: code(Debugging6)
         });
-}  
+}
+  if(localStorage.getItem("Debugging7")=="true"){
+var control = `
+for(var b in window) { 
+  if(window.hasOwnProperty(b)){
+if(b.indexOf("${localStorage.getItem("varcommand")}") !== -1){
+eval("var "+b+"=undefined;")
+}
+    console.log(b);
+  }  
+}
+`;
+  chrome.tabs.executeScript(tabId, {
+            allFrames: true, 
+            code: code(control)
+        });
+} 
+
 
     }
 	return;
+}else{
+    chrome.browserAction.setBadgeText({
+    'text': ''  
+});
 }
+
+
 });
 
 

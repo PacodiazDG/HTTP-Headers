@@ -1,28 +1,38 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<script src="./js/options.js"></script>
-<style type="text/css">
-</style>
+  <script src="./js/options.js"></script>
+  <style type="text/css">
+  </style>
 </head>
 <div class="row">
-<h3>Web application firewall detection </h3>
-<p>Detection level of the WAF</p>
-<input type="number" value="1" name="quantity" min="1" max="3" id="waflevel">
-<p>Inject script when detecting the WAF <input class="form-check-input br" type="checkbox"  id="WAFNOTF"  disabled value=""></p>
-<hr>
-<h3>Bypass anti-Debugging</h3>
-<p>block var debuggerProtection <input class="form-check-input br" type="checkbox" value="" id="Debugging1"></p>
-<p>block the detection of the window <input class="form-check-input br" type="checkbox" value="" id="Debugging2"></p>
-<p>block eval function <input class="form-check-input br" type="checkbox" value="" id="Debugging3"></p>
-<p>loss of setTimeout <input class="form-check-input br" type="checkbox" value="" id="Debugging4"></p>
-<p>block performance function <input class="form-check-input br" type="checkbox" value="" id="Debugging5"></p>
-<p>Enable right click <input class="form-check-input br" type="checkbox" value="" id="Debugging6"></p>
-<hr>
-<h3>Shodan api key</h3>
-<h3 id="apikeyi" style="color:red;"></h3>
-<input id="shodanapikey">
-<button type="button" id="shodanapikeygo">Ok</button>
+  <h3>Web application firewall detection </h3>
+  <p>Detection level of the WAF</p>
+  <input type="number" value="1" name="quantity" min="1" max="3" id="waflevel">
+  <p>Inject script when detecting the WAF <input class="form-check-input br" type="checkbox" id="WAFNOTF" disabled value=""></p>
+  <hr>
+  <h3>Bypass anti-Debugging</h3>
+  <p>block var debuggerProtection <input class="form-check-input br" type="checkbox" value="" id="Debugging1"></p>
+  <p>block the detection of the window <input class="form-check-input br" type="checkbox" value="" id="Debugging2"></p>
+  <p>block eval function <input class="form-check-input br" type="checkbox" value="" id="Debugging3"></p>
+  <p>loss of setTimeout <input class="form-check-input br" type="checkbox" value="" id="Debugging4"></p>
+  <p>block performance function <input class="form-check-input br" type="checkbox" value="" id="Debugging5"></p>
+  <p>Enable right click <input class="form-check-input br" type="checkbox" value="" id="Debugging6"></p>
+  <h3 style="color:red;">this function can be dangerous!!!!</h3>
+  <p id="dangerous" style="color:red;"></p>
+  <p>var remove <input class="form-check-input br" type="checkbox" value="" id="Debugging7"></p>
+  <input id="varcommand" placeholder="_0x">
+  <button type="button" id="_0x">Ok</button>
+  <hr>
+  <h3>Shodan api key</h3>
+  <h3 id="apikeyi" style="color:red;"></h3>
+  <input id="shodanapikey">
+  <button type="button" id="shodanapikeygo">Ok</button>
+  <hr>
+  <h3>Privacity</h3>
+  <p>Enable shodan <input class="form-check-input br" type="checkbox" value="" id="Enableshodan1"></p>
 </div>
 </body>
-</html> 
+
+</html>
