@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script type="text/javascript" src="./js/decoder-encoder/unicode.js"></script>
+    <script type="text/javascript" src="./js/decoder-encoder/decoder.js"></script>
+    <script src="./js/xss-filters.1.2.7.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title></title>
+</head>
+
+<body>
+    <style type="text/css">
+        body {
+            background: #1f1f1f;
+            color: #008000;
+            overflow-x: hidden;
+        }
+        
+        .text {
+            text-overflow: ellipsis;
+        }
+    </style>
+    <h5>Decoder</h5>
+    <div class="container">
+        <p>Select</p>
+        <select class="form-control" id="encoder">
+            <option value="" disabled selected>Choose your option</option>
+            <option value="ASCII">ASCII</option>
+            <option value="decimalenc">Decimal Encode</option>
+            <option value="hexadecimalenc">Hexadecimal Encode</option>
+            <option value="binaryenc">Binary Encode</option>
+            <option value="octalenc">Octal Encode</option>
+            <option value="base64Encode">base64 Encode</option>
+            <option value="base64Decode">base64 Decode</option>
+            <option value="encodeURIComponent">URL Encode (encodeURIComponent) (Recommended) not encode: @*/+</option>
+            <option value="encodeURI">URL Encode (encodeURI) not encode: ~!@#$&*()=:/,;?+'</option>
+            <option value="escape">URL Encode (escape) not encode: @*/+</option>
+            <option value="decodeURIComponent">Decode URL </option>
+        </select>
+        <p></p>
+        <div class="form-group">
+            <textarea class="form-control" rows="9" id="text" name="text">text</textarea>
+        </div>
+        <div class="form-group">
+            <textarea disabled class="form-control" rows="9" id="textencode" name="text">text</textarea>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="d-flex flex-column bd-highlight mb-3 justify-content-center">
+            <p>Find...</p>
+            <input type="text" class="form-control" id="Find" placeholder="Find">
+            <p>Replace...</p>
+            <input type="text" class="form-control" id="Replace" placeholder="Replace...">
+            <p>Prepend text to beginning of string:    <input  id="beginningReplace" type="checkbox" value="" ></p>
+            <button type="button" class="btn btn-dark" id="Replacebutton">Replace text</button>
+           
+        </div>
+    </div>
+
+</body>
+
+</html>

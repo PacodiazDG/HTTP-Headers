@@ -12,7 +12,7 @@
     "page": "options.html"
   },
   "background": {
-    "scripts": ["background.js"]
+    "scripts": ["background.js","/js/contextMenus.js"]
   },
   "browser_action": {
      "default_popup": "popup.html",
@@ -24,10 +24,8 @@
     "http://*/*",
     "https://*/*",
     "activeTab",
-    "notifications",
-    "activeTab",
+    "contextMenus",
     "storage"
-
   ],
-  "web_accessible_resources": [ "options.html",    "/js/options.js"]
+  "web_accessible_resources": [ "options.html", "/js/options.js"]
 }
