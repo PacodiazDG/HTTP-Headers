@@ -8,7 +8,6 @@ localStorage.setItem("Debugging6",false);
 localStorage.setItem("Debugging7",false);
 localStorage.setItem("varcommand","bgfbfgbfgbfgb");
 localStorage.setItem("waflevel",1);
-localStorage.setItem("WAFNOTF",false);
 localStorage.setItem("status",false);
 localStorage.setItem("keyshodan","");
 localStorage.setItem("Enableshodan1",true);

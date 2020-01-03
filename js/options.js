@@ -7,9 +7,6 @@ function getactivelocalStorage(namestorage, id) {
       document.getElementById(Debugging).checked = true;
     }
   }
-  if (localStorage.getItem("WAFNOTF") == "true") {
-    document.getElementById("WAFNOTF").checked = true;
-  }
 }
 /*******************************************************************************************/
 document.addEventListener('DOMContentLoaded', () => {
@@ -28,15 +25,6 @@ document.addEventListener('DOMContentLoaded', () => {
     localStorage.setItem("waflevel", (document.getElementById("waflevel").value));
   });
   /*******************************************************************************************/
-  var WAF4 = document.getElementById('WAFNOTF');
-  WAF4.addEventListener('click', () => {
-    if (WAF4.checked) {
-      localStorage.setItem("WAFNOTF", "true");
-    } else {
-      localStorage.setItem("WAFNOTF", "false");
-    }
-  });
-  /******************************************************************************************/
   /*******************************************************************************************/
   var Debugging1 = document.getElementById('Debugging1');
   Debugging1.addEventListener('click', () => {
