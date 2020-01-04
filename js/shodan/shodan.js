@@ -68,7 +68,7 @@ if(keyshodan===""){
     }
 }
 /******************************************************************************/
-chrome.tabs.getSelected(null,function(tab) {
+chrome.tabs.getSelected(null,(tab) => {
 var url = new URL(tab.url);
 var tabname = url.hostname;
 var ipad=dnsget(tabname);
