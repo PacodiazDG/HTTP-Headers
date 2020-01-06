@@ -18,7 +18,6 @@ async function ipget(argument) {
       return;
     }
     rsq = JSON.parse(rsq.responseText)
-    console.log(rsq['isp']);
     document.getElementById("infodns").innerHTML += `<p style="font-size:14px;">ISP: ${rsq['isp']}</p>`;
     document.getElementById("infodns").innerHTML += `<p style="font-size:14px;">Country name: ${rsq['country_name']}</p>`;
     document.getElementById("infodns").innerHTML += `<p style="font-size:14px;">ORG: ${rsq['org']}</p>`;
@@ -57,7 +56,6 @@ async function dnsget(argument) {
     var respuestaclass, rsq;
     respuestaclass = new httprequest(`https://api.shodan.io/dns/resolve?key=${keyshodan}&hostnames=${argument}`, "GET");
     rsq = await respuestaclass.httpsend();
-    console.log(rsq);
     rsq = JSON.parse(rsq.responseText);
     if (rsq[argument] == null) {
       document.getElementById("ip").innerHTML = `<span class="badge badge-danger">Shodan doesn't solve the host</span>`;
