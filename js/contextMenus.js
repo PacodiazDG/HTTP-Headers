@@ -14,3 +14,38 @@ chrome.contextMenus.create({
  chrome.tabs.create({url: "param.html?q="+btoa(tab.url)})
   }
 });
+
+
+chrome.contextMenus.create({
+  "title":"Clear Clipboard",
+  "contexts":["browser_action"],
+  "onclick":(info, tab) => {
+var clipboard = document.createElement('textarea');
+  clipboard.textContent = '';
+  document.body.appendChild(clipboard);
+  var selection = document.getSelection();
+  var range = document.createRange();
+  range.selectNode(clipboard);
+  selection.removeAllRanges();
+  selection.addRange(range);
+  var status = document.execCommand('copy');
+  selection.removeAllRanges();
+  document.body.removeChild(clipboard);
+  notifications(status);
+  }
+});
+
+function notifications(status) {
+	chrome.notifications.create(
+    			{
+    				type:'basic',
+    				iconUrl: "/icons/icon128.png",
+    				title : "clipboard is clean",
+    				message: "Status: "+status,
+    				priority:0,
+    				isClickable: false
+    			}
+    		);
+}
+
+

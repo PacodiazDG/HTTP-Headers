@@ -25,7 +25,8 @@
     "https://*/*",
     "activeTab",
     "contextMenus",
-    "storage"
+    "storage",
+    "notifications"
   ],
   "web_accessible_resources": [ "options.html", "/js/options.js"]
 }
