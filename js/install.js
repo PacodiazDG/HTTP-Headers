@@ -6,7 +6,7 @@ localStorage.setItem("Debugging4",false);
 localStorage.setItem("Debugging5",false);
 localStorage.setItem("Debugging6",false);
 localStorage.setItem("Debugging7",false);
-localStorage.setItem("varcommand","bgfbfgbfgbfgb");
+localStorage.setItem("varcommand","_0x");
 localStorage.setItem("waflevel",1);
 localStorage.setItem("status",false);
 localStorage.setItem("keyshodan","");
