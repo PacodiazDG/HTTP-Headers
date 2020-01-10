@@ -106,23 +106,34 @@ enableContextMenu();`;
             code: code(Debugging6)
         });
 }
-  if(localStorage.getItem("Debugging7")=="true"){
+
+
+    }else{
+          if(localStorage.getItem("Debugging7")=="true"){
 var control = `
+
+
+var myobj = JSON.parse('${localStorage.getItem("varcommand")}');
+
+Object.keys(myobj.vars).forEach(function(key){
+
 for(var b in window) { 
   if(window.hasOwnProperty(b)){
-if(b.indexOf("${localStorage.getItem("varcommand")}") !== -1){
-eval("var "+b+"=undefined;")
+if(b.indexOf(myobj.vars[key]) !== -1){
+console.log("delete "+b+"!!!")
+eval("delete  "+b+";")
 }
-    console.log(b);
   }  
 }
+
+
+});
 `;
   chrome.tabs.executeScript(tabId, {
             allFrames: true, 
             code: code(control)
         });
 } 
-
 
     }
 	return;

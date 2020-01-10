@@ -107,16 +107,28 @@ document.addEventListener('DOMContentLoaded', () => {
   var _0x = document.getElementById('_0x');
   _0x.addEventListener('click', () => {
 var comm=document.getElementById("varcommand").value;
-var re = new RegExp("/^([a-zA-Z_$])/$");
-if (comm.match(/^([a-zA-Z0-9_$]+)$/)) {
+try
+{
+var myobj = JSON.parse(comm);
+Object.keys(myobj.vars).forEach(function(key){
+console.log(myobj.vars[key]);
+});
+if(comm.includes("'")){
+     document.getElementById("dangerous").innerText = "No valid";
+  return 0;
+}
+}catch(a){
+   document.getElementById("dangerous").innerText = "No valid";
+return 0;
+}
+
+
+
+
+
   localStorage.setItem("varcommand", (comm));
  document.getElementById("dangerous").innerText = "";
-  }else{
-      console.log("4");
 
-   document.getElementById("dangerous").innerText = "not valid!!";
-return;
-  }
   });
 
 
