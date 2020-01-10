@@ -5,8 +5,6 @@ chrome.contextMenus.create({
  chrome.tabs.create({url: "decoder.html?q="})
   }
 });
-
-
 chrome.contextMenus.create({
   "title":"Change URL parameters",
   "contexts":["browser_action"],
@@ -14,8 +12,6 @@ chrome.contextMenus.create({
  chrome.tabs.create({url: "param.html?q="+btoa(tab.url)})
   }
 });
-
-
 chrome.contextMenus.create({
   "title":"Clear Clipboard",
   "contexts":["browser_action"],
@@ -47,5 +43,11 @@ function notifications(status) {
     			}
     		);
 }
-
+chrome.contextMenus.create({
+  "title":"About",
+  "contexts":["browser_action"],
+  "onclick":(info, tab) => {
+ chrome.tabs.create({url: "https://github.com/Pacodiaz2g/Sniper-HTTP-Headers"})
+  }
+});
 
