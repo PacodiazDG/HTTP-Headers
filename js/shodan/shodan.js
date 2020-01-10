@@ -68,8 +68,11 @@ async function dnsget(argument) {
   }
 }
 /******************************************************************************/
-chrome.tabs.getSelected(null, (tab) => {
-  var url = new URL(tab.url);
+chrome.tabs.query({
+  active: true,
+  currentWindow: true
+}, (tabs) => {
+   var url = tabs[0].url;
   var tabname = url.hostname;
   var ipad = dnsget(tabname);
   ipget(ipad);

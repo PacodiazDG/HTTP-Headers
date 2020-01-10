@@ -61,19 +61,28 @@ chrome.tabs.query({
   }, false);
 });
 /******************************************************************************/
-chrome.tabs.getSelected(null, (tab) => {
+chrome.tabs.query({
+  active: true,
+  currentWindow: true
+}, (tabs) => {
+
+   var url0 = tabs[0].url;
+console.log(url0)
+   var url0 = tabs[0].url;
+
   if (localStorage.getItem("DisclaimerAlert") == "ok") {
     document.getElementById("DisclaimerAlert").remove();
   }
   //HEADHeaders
-  var url = new URL(tab.url);
-  var tabname = url.hostname;
-  header(tab.url);
+  var tabname = url0.hostname;
+  console.log(tabname)
+
+  header(url0);
   // fun dis
   /******************************************************************************/
   var Firewall = document.getElementById('WAF');
   Firewall.addEventListener('click', () => {
-    var wafurl = tab.url;
+    var wafurl = tabs[0].url;
     wafurl = wafurl.split('#')[0];
     var local = localStorage.getItem("waflevel");
     var wafpayload1 = '?a=<a>alert();</a>';
