@@ -4,6 +4,5 @@ function base(tmp,base) {
         str += " "+tmp[i].charCodeAt(0).toString(base);
     }
     str = str.substring(1);
-
     return str;
 }
