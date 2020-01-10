@@ -73,7 +73,8 @@ chrome.tabs.query({
   currentWindow: true
 }, (tabs) => {
    var url = tabs[0].url;
-  var tabname = url.hostname;
+   var tabname = (new URL(url)).hostname;
+  console.log(tabname)
   var ipad = dnsget(tabname);
   ipget(ipad);
 });
