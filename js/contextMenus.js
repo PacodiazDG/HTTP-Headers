@@ -40,12 +40,23 @@ function notifications(status) {
   {
     type: 'basic',
     iconUrl: "/icons/icon128.png",
-    title: "clipboard is clean",
+    title: "clipboard",
     message: "Status: " + status,
     priority: 0,
     isClickable: false
   });
 }
+
+chrome.contextMenus.create({
+  "title": "issues type",
+  "contexts": ["browser_action"],
+  "onclick": (info, tab) => {
+    chrome.tabs.create({
+      url: "listoftest.html"
+    })
+  }
+});
+
 chrome.contextMenus.create({
   "title": "About",
   "contexts": ["browser_action"],
