@@ -106,10 +106,7 @@ enableContextMenu();`;
             code: code(Debugging6)
         });
 }
-
-
-    }else{
-          if(localStorage.getItem("Debugging7")=="true"){
+        if(localStorage.getItem("Debugging7")=="true"){
 var control = `
 
 
@@ -120,8 +117,10 @@ Object.keys(myobj.vars).forEach(function(key){
 for(var b in window) { 
   if(window.hasOwnProperty(b)){
 if(b.indexOf(myobj.vars[key]) !== -1){
-console.log("delete "+b+"!!!")
-eval("delete  "+b+";")
+eval(""+b+"=undefined;")
+console.log("undefined "+b+"!!!")
+eval("console.log("+b+");")
+
 }
   }  
 }
@@ -134,6 +133,9 @@ eval("delete  "+b+";")
             code: code(control)
         });
 } 
+
+    }else{
+  
 
     }
 	return;
