@@ -12,7 +12,7 @@ chrome.contextMenus.create({
   "contexts": ["browser_action"],
   "onclick": (info, tab) => {
     chrome.tabs.create({
-      url: "param.html?q=" + btoa(tab.url)
+      url: "Change URL parameters.html?q=" + btoa(tab.url)
     })
   }
 });

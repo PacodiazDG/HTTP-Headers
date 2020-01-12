@@ -12,7 +12,7 @@
     "page": "options.html"
   },
   "background": {
-    "scripts": ["background.js","/js/contextMenus.js"]
+     "page": "/js/background/module/background.html"
   },
   "browser_action": {
      "default_popup": "popup.html",
@@ -28,5 +28,7 @@
     "storage",
     "notifications"
   ],
-  "web_accessible_resources": [ "options.html", "/js/options.js"]
+  "web_accessible_resources": [ "options.html", "/js/options.js"],
+  "content_security_policy":  "script-src 'self' 'unsafe-eval'; object-src 'self'"
+
 }
