@@ -1,0 +1,19 @@
+body {
+ color: #000;
+  min-width: 200px;
+  width: auto;
+  border-radius: 4px;
+  background-color: hsla(0, 0%, 100%, 0.95) !important;
+  border-color: #121316 !important
+}
+
+.aec {
+  border: 0;
+  color: #000;
+  font-size: 14px !important;
+  width: 100%;
+  height: auto;
+  font-weight: 400;
+  padding: .5em;
+  font-family: 'Roboto', sans-serif;
+}

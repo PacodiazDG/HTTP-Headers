@@ -1,6 +1,5 @@
 #let,
 body {
-  color: #000;
   display: block
 }
 
@@ -16,13 +15,6 @@ body {
   display: block
 }
 
-body {
-  min-width: 200px;
-  width: auto;
-  border-radius: 4px;
-  background-color: hsla(0, 0%, 100%, 0.95) !important;
-  border-color: #121316 !important
-}
 
 #let {
   font-family: 'Tinos', serif;
@@ -45,16 +37,6 @@ h3 {
   font-family: Montserrat, sans-serif
 }
 
-.aec {
-  border: 0;
-  color: #000;
-  font-size: 14px !important;
-  width: 100%;
-  height: auto;
-  font-weight: 400;
-  padding: .5em;
-  font-family: 'Roboto', sans-serif;
-}
 
 .area {
   white-space: pre-wrap;

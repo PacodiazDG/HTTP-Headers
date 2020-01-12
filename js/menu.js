@@ -120,7 +120,8 @@ async function hackertarget(host) {
 async function header(url) {
   try {
     document.getElementById("info").innerHTML = `<div class="loader">Loading...</div>`;
-    var respuestaclass = new httprequest(url, "HEAD");
+    var httpmethods = localStorage.getItem("httpmethods");
+    var respuestaclass = new httprequest(url, httpmethods);
     var respuesta = await respuestaclass.httpsend();
     respuesta = xssFilters.inHTMLData(respuesta.getAllResponseHeaders());
     respuesta = respuesta.replace(new RegExp('\r?\n', 'g'), '<hr class="style-one">');
@@ -130,3 +131,5 @@ async function header(url) {
     document.getElementById("info").innerHTML = (e);
   }
 }
+/*******************************************************************/
+

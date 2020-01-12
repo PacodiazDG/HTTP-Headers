@@ -14,11 +14,11 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById("apikeyi").innerText = "To use shodan you need the api key";
     alert("To use shodan you need the api key")
   }
-  getactivelocalStorage("Debugging", 8);
+  document.getElementById("currentmethods").textContent = localStorage.getItem('httpmethods');
+  getactivelocalStorage("Debugging", 9);
   getactivelocalStorage("Enableshodan", 1);
   document.getElementById('shodanapikey').value = localStorage.getItem("keyshodan");
   document.getElementById('varcommand').value = localStorage.getItem("varcommand");
-
   /*******************************************************************************************/
   var waflevel = document.getElementById('waflevel');
   waflevel.addEventListener('change', () => {
@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
       localStorage.setItem("Debugging6", "false");
     }
   });
-/*******************************************************************************************/
+  /*******************************************************************************************/
   var Debugging7 = document.getElementById('Debugging7');
   Debugging7.addEventListener('click', () => {
     if (Debugging7.checked) {
@@ -94,44 +94,42 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
   /******************************************************************************************/
+  var Debugging8 = document.getElementById('Debugging8');
+  Debugging8.addEventListener('click', () => {
+    if (Debugging8.checked) {
+      localStorage.setItem("Debugging8", "true");
+    } else {
+      localStorage.setItem("Debugging8", "false");
+    }
+  });
+  /******************************************************************************************/
   var apikeyshodan = document.getElementById('shodanapikeygo');
   apikeyshodan.addEventListener('click', () => {
     localStorage.setItem("keyshodan", (document.getElementById("shodanapikey").value));
     var apikeyi = document.getElementById('apikeyi');
     apikeyi.remove();
   });
-
-
   /******************************************************************************************/
-
   var _0x = document.getElementById('_0x');
   _0x.addEventListener('click', () => {
-var comm=document.getElementById("varcommand").value;
-try
-{
-var myobj = JSON.parse(comm);
-Object.keys(myobj.vars).forEach(function(key){
-console.log(myobj.vars[key]);
-});
-if(comm.includes("'")){
-     document.getElementById("dangerous").innerText = "No valid";
-  return 0;
-}
-}catch(a){
-   document.getElementById("dangerous").innerText = "No valid";
-return 0;
-}
-
-
-
-
-
-  localStorage.setItem("varcommand", (comm));
- document.getElementById("dangerous").innerText = "";
-
+    var comm = document.getElementById("varcommand").value;
+    try
+    {
+      var myobj = JSON.parse(comm);
+      Object.keys(myobj.vars).forEach(function(key) {
+        console.log(myobj.vars[key]);
+      });
+      if (comm.includes("'")) {
+        document.getElementById("dangerous").innerText = "No valid";
+        return 0;
+      }
+    } catch (a) {
+      document.getElementById("dangerous").innerText = "No valid";
+      return 0;
+    }
+    localStorage.setItem("varcommand", (comm));
+    document.getElementById("dangerous").innerText = "";
   });
-
-
   /******************************************************************************************/
   var Enableshodan1 = document.getElementById('Enableshodan1');
   Enableshodan1.addEventListener('click', () => {
@@ -142,4 +140,13 @@ return 0;
     }
   });
   /******************************************************************************************/
+  document.getElementById('Methods').addEventListener('change', (e) => {
+    localStorage.setItem("httpmethods", e.target.value);
+    document.getElementById("currentmethods").textContent = e.target.value;
+  });
+  /******************************************************************************************/
+  document.getElementById('Theme').addEventListener('change', (e) => {
+    localStorage.setItem("Theme", e.target.value);
+  });
 });
+/******************************************************************************************/
