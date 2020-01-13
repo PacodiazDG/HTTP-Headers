@@ -37,7 +37,7 @@ chrome.tabs.query({
   /******************************************************************************/
   var parms = document.getElementById('parms');
   parms.addEventListener('click', () => {
-    window.open(`param.html?q=${btoa(tabs[0].url)}`, '_blank');
+    window.open(`Change URL parameters.html?q=${btoa(tabs[0].url)}`, '_blank');
   }, false);
   /******************************************************************************/
   var nmap = document.getElementById('Nmap');
