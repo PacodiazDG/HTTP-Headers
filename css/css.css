@@ -15,7 +15,6 @@ body {
   display: block
 }
 
-
 #let {
   font-family: 'Tinos', serif;
   font-size: 25px
@@ -36,7 +35,6 @@ h3 {
   color: #a5a7ba;
   font-family: Montserrat, sans-serif
 }
-
 
 .area {
   white-space: pre-wrap;
@@ -91,12 +89,12 @@ hr.style-one {
     transform: rotate(0);
     animation-timing-function: cubic-bezier(.55, .055, .675, .19)
   }
-
+  
   50% {
     transform: rotate(900deg);
     animation-timing-function: cubic-bezier(.215, .61, .355, 1)
   }
-
+  
   100% {
     transform: rotate(1800deg)
   }
@@ -145,8 +143,12 @@ hr.style-one {
   text-shadow: none;
   width: 48px;
 }
+
 .salto {
-            display: block; /* makes it have a width */
-            content: ""; /* clears default height */
-            margin-top: 0; /* change this to whatever height you want it */
+  display: block;
+  /* makes it have a width */
+  content: "";
+  /* clears default height */
+  margin-top: 0;
+  /* change this to whatever height you want it */
 }

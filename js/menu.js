@@ -65,18 +65,15 @@ chrome.tabs.query({
   active: true,
   currentWindow: true
 }, (tabs) => {
-
-   var url0 = tabs[0].url;
-console.log(url0)
-   var url0 = tabs[0].url;
-
+  var url0 = tabs[0].url;
+  console.log(url0)
+  var url0 = tabs[0].url;
   if (localStorage.getItem("DisclaimerAlert") == "ok") {
     document.getElementById("DisclaimerAlert").remove();
   }
   //HEADHeaders
   var tabname = url0.hostname;
   console.log(tabname)
-
   header(url0);
   // fun dis
   /******************************************************************************/
@@ -132,4 +129,3 @@ async function header(url) {
   }
 }
 /*******************************************************************/
-
