@@ -2,7 +2,7 @@ import {
 	base
 } from '/js/decoder-encoder/unicode.js';
 
-function binaryfix(value) {
+function binaryfix(fix) {
 	fix = fix.split(" ").join(" 0");
 	return fix.replace(/^/, "0");
 }
@@ -32,7 +32,7 @@ export function encode(value, text) {
 	}
 	else if (value === "base64Encode") {
 		// base64 encode
-		document.getElementById('textencode').value = btoa(text);
+		document.getElementById('textencode').value = Base64.encode(text);
 		return true;
 	}
 	else if (value === "encodeURIComponent") {

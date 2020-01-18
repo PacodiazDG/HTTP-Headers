@@ -6,7 +6,9 @@
     <script type="module" src="./js/decoder-encoder/encodemenu.js"></script>
     <script type="module" src="./js/decoder-encoder/decodemenu.js"></script>
     <script type="module" src="./js/decoder-encoder/decoder.js"></script>
-    <script src="./js/xss filter/xss-filters.1.2.7.min.js"></script>
+    <script src="/js/lib/base64.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+    <script src="./js/lib/xss-filters.1.2.7.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <title></title>
@@ -15,11 +17,17 @@
 <body>
     <style type="text/css">
 body {
-    background: hsl(0, 0%, 12%);
+    background: #222222;
     color: #008000;
     overflow-x: hidden;
+    font-family: font-family: 'Questrial', sans-serif;
 }
+textarea { font-family: DejaVu Sans, Symbola, Quivira, Segoe UI Symbol, UniversaliaPlus }
 
+.form-control:focus,.form-control,.form-control:disabled  {
+    color: #fff;
+    background-color: #333;
+}
 .text {
     text-overflow: ellipsis;
 }
@@ -48,13 +56,14 @@ body {
             <option value="DecimalDecode">Decimal Decode</option>
             <option value="HexadecimalDecode">Hexadecimal Decode</option>
             <option value="OctalDecode">Octal Decode</option>
+            <option value="base64DecodeHaxdecimal">base64 Decode whit Haxdecimal</option>
         </select>
         <p></p>
         <div class="form-group">
-            <textarea class="form-control" rows="9" id="text" name="text">text</textarea>
+            <textarea class="form-control" rows="7" id="text" name="text">text</textarea>
         </div>
         <div class="form-group">
-            <textarea disabled class="form-control" rows="9" id="textencode" name="text">text</textarea>
+            <textarea disabled class="form-control" rows="7" id="textencode" name="text">....</textarea>
         </div>
     </div>
     <div class="container">

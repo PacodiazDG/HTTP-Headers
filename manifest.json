@@ -1,6 +1,6 @@
 {
   "name": "HTTP-Headers",
-  "version": "0.4.1",
+  "version": "0.5.2",
   "manifest_version": 2,
   "description": "HTTP-Headers",
   "icons": {
@@ -18,6 +18,11 @@
      "default_popup": "popup.html",
      "default_title": "HTTP-Headers"
   },
+    "content_scripts": [ {
+        "js":        [ "/js/background/browser-fingerprint/javascript.js" ],
+        "matches":   [ "<all_urls>"],
+        "run_at":    "document_start"
+    } ],
   "permissions": [
     "<all_urls>",
     "tabs",
@@ -26,7 +31,11 @@
     "activeTab",
     "contextMenus",
     "storage",
-    "notifications"
+    "notifications",
+    
+    "webRequest",
+    "webRequestBlocking",
+    "\u003Call_urls>" 
   ],
   "web_accessible_resources": [ "options.html", "/js/options.js"],
   "content_security_policy":  "script-src 'self' 'unsafe-eval'; object-src 'self'"

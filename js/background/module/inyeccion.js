@@ -54,7 +54,14 @@ function bringBackDefault(event) {
 }
 enableContextMenu();`;
 
-const Debugging7control1s = `
+
+
+export function enableContextMenus() {
+   return codeenableContextMenu;
+}
+
+export function Debugging7control1() {
+    var Debugging7control1s = `
 console.log("#1");
 var myobj = JSON.parse('${localStorage.getItem("varcommand")}');
 Object.keys(myobj.vars).forEach(function(key) {
@@ -71,20 +78,22 @@ Object.keys(myobj.vars).forEach(function(key) {
   }
 });
 `;
-const Debugging7control2s =`console.log("#2");
-var myobj = JSON.parse('${localStorage.getItem("varcommand")}');
-Object.keys(myobj.vars).forEach(function(key) {
-  eval(myobj.vars[key] + "=undefined;")
-  eval("console.log(" + myobj.vars[key] + ");")
-});`
-export function enableContextMenus() {
-   return codeenableContextMenu;
-}
-
-export function Debugging7control1() {
    return Debugging7control1s;
 }
 
 export function Debugging7control2() {
+    var Debugging7control2s =`console.log("#2");
+var myobj = JSON.parse('${localStorage.getItem("varcommand")}');
+Object.keys(myobj.vars).forEach(function(key) {
+  eval(myobj.vars[key] + "=undefined;")
+  eval("console.log(" + myobj.vars[key] + ");")
+});`;
    return Debugging7control2s;
+}
+
+export function EnablesDump1() {
+var EnablesDump =` Object.defineProperty(navigator, 'userAgent', {
+    get: function () { return 'Mozilla/5.0 (Windows NT 6.2; WOW64; rv:28.0) Gecko/20100101 Firefox/28.0)';
+     }});`;
+return EnablesDump;
 }

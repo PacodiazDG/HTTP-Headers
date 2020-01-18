@@ -2,9 +2,9 @@
 <html>
 
 <head>
-  <script src="./js/options.js"></script>
-  <style type="text/css">
-  </style>
+  <script type="module" src="\js\options\entrypoint.js"></script>
+  <script type="module" src="\js\options\getactivelocalStorage.mjs.js"></script>
+  <script type="module" src="\js\options\options.js"></script>
 </head>
 <div class="row">
   <h3>Web application firewall detection </h3>
@@ -12,20 +12,23 @@
   <input type="number" value="1" name="quantity" min="1" max="3" id="waflevel">
   <hr>
   <h3>Bypass anti-Debugging</h3>
-  <p>block var debuggerProtection <input class="form-check-input br" type="checkbox" value="" id="Debugging1"></p>
-  <p>block the detection of the window <input class="form-check-input br" type="checkbox" value="" id="Debugging2"></p>
-  <p>block eval function <input class="form-check-input br" type="checkbox" value="" id="Debugging3"></p>
-  <p>loss of setTimeout <input class="form-check-input br" type="checkbox" value="" id="Debugging4"></p>
-  <p>block performance function <input class="form-check-input br" type="checkbox" value="" id="Debugging5"></p>
-  <p>Enable right click <input class="form-check-input br" type="checkbox" value="" id="Debugging6"></p>
+  <p>loss of setTimeout <input class="form-check-input br" type="checkbox" value="" id="Debugging1"></p>
+  <p>Enable right click <input class="form-check-input br" type="checkbox" value="" id="Debugging2"></p>
   <h3 style="color:red;">this function can be dangerous!!!!</h3>
   <h3 style="color:blue;">Only json</h3>
   <p id="dangerous" style="color:red;"></p>
-  <p>var remove <input class="form-check-input br" type="checkbox" value="" id="Debugging7"></p>
-  <p>If contains string <input class="form-check-input br" type="checkbox" value="" id="Debugging8"></p>
+  <p>var remove <input class="form-check-input br" type="checkbox" value="" id="Debugging3"></p>
+  <p>If contains string <input class="form-check-input br" type="checkbox" value="" id="Debugging4"></p>
 
   <textarea id="varcommand" placeholder="_0x" rows="7" cols="60"></textarea>
   <button type="button" id="_0x">Ok</button>
+  <h3 style="color:SaddleBrown;">User-Agent Switcher </h3>
+  <!-- -->
+  <p>User-Agent Switcher 
+  <input class="form-check-input br" type="checkbox" value="" id="UserAgent1"></p>
+  <input id="UserAgents">
+  <button type="button" id="UserAgentok">Ok</button>
+  <!-- -->
   <hr>
   <h3>Shodan api key</h3>
   <h3 id="apikeyi" style="color:red;"></h3>
@@ -40,6 +43,7 @@
   <p>Current:</p>
   <h5 style="color:blue;" id="currentmethods"></h5>
   <select id="Methods">
+  <option disabled selected="true">Select</option>
   <option value="HEAD">HEAD (Recommended)</option>
   <option value="GET">GET</option>
   <option value="POST">POST</option>
@@ -51,6 +55,7 @@
   <div class="Theme">
   <h3>Theme</h3>
   <select id="Theme">
+  <option disabled selected="true">Select</option>
   <option value="Default">Default</option>
   <option value="Dark">Dark</option>
 </select>

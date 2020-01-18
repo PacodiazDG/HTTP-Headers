@@ -1,10 +1,13 @@
-import {
-  encode
-} from '/js/decoder-encoder/encodemenu.js';
-import {
-  decodemenu
-} from '/js/decoder-encoder/decodemenu.js';
+import {encode} from '/js/decoder-encoder/encodemenu.js';
+import {decodemenu} from '/js/decoder-encoder/decodemenu.js';
+import {getSearchParameters} from '/js/lib/geturlparams.js';
+
 document.addEventListener('DOMContentLoaded', () => {
+  var params = getSearchParameters();
+  if ((params.hasOwnProperty('q'))) {
+    params = Base64.decode(params.q);
+    document.getElementById('text').value = params;
+  }
   document.getElementById('encoder').addEventListener('change', (e) => {
     var text = document.getElementById("text").value;
     let value = e.target.value;
