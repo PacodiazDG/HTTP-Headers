@@ -57,6 +57,16 @@ chrome.contextMenus.create({
   }
 });
 chrome.contextMenus.create({
+  "title": "issues",
+  "contexts": ["browser_action"],
+  "onclick": (info, tab) => {
+    chrome.tabs.create({
+      url: "issues.html"
+    })
+  }
+});
+
+chrome.contextMenus.create({
   "title": "Sandbox",
   "contexts": ["browser_action"],
   "onclick": (info, tab) => {
