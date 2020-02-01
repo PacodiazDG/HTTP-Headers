@@ -10,6 +10,8 @@ if (localStorage.getItem("install") === null) {
 	localStorage.setItem("httpmethods", "HEAD");
 	localStorage.setItem("Theme", "Default");
 	localStorage.setItem("Enableshodan1", true);
+	localStorage.setItem("UserAgent1", false);
+	localStorage.setItem("UserAgent1javasc1", false);
 	localStorage.setItem("install", true);
 	chrome.tabs.create({
 		url: "options.html"

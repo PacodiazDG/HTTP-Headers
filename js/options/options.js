@@ -91,6 +91,15 @@ document.addEventListener('DOMContentLoaded', () => {
       localStorage.setItem("UserAgent1", "false");
     }
   });
+/******************************************************************************************/
+var UserAgent1javasc1 = document.getElementById('UserAgent1javasc1');
+  UserAgent1javasc1.addEventListener('click', () => {
+    if (UserAgent1javasc1.checked) {
+      localStorage.setItem("UserAgent1javasc1", "true");
+    } else {
+      localStorage.setItem("UserAgent1javasc1", "false");
+    }
+  });
 
 /******************************************************************************************/
    var UserAgentok = document.getElementById('UserAgentok');

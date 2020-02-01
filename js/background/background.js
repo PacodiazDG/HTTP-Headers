@@ -14,7 +14,7 @@ import {
 } from './browser-fingerprint/user-agent.js';
 
 chrome.runtime.onMessage.addListener((msg, sender_info, Reply) => {
-  if (localStorage.getItem("UserAgent1") == "true" && localStorage.getItem("status") === "true") {
+  if (localStorage.getItem("UserAgent1javasc1") == "true" && localStorage.getItem("status") === "true") {
     console.log(true);
     Reply(localStorage.getItem("User-Agent"));
   } else {

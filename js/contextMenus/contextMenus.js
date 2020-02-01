@@ -48,16 +48,6 @@ function notifications(status) {
 }
 
 chrome.contextMenus.create({
-  "title": "Issues type",
-  "contexts": ["browser_action"],
-  "onclick": (info, tab) => {
-    chrome.tabs.create({
-      url: "listoftest.html"
-    })
-  }
-});
-
-chrome.contextMenus.create({
   "title": "About",
   "contexts": ["browser_action"],
   "onclick": (info, tab) => {
