@@ -1,3 +1,5 @@
+
+const css = "*{-webkit-touch-callout: default;-webkit-user-select: default !important ; -khtml-user-select: default !important;-moz-user-select: default !important;-ms-user-select: default !important;user-select: text !important;}";
 const codeenableContextMenu = `
 function enableContextMenu(aggressive = false) {
     void(document.ondragstart = null);
@@ -52,7 +54,13 @@ function bringBackDefault(event) {
     (typeof event.stopPropagation === 'function') && event.stopPropagation();
     (typeof event.cancelBubble === 'function') && event.cancelBubble();
 }
-enableContextMenu();`;
+enableContextMenu();
+var styles = "${css}";
+var styleSheet = document.createElement("style")
+styleSheet.type = "text/css"
+styleSheet.innerText = styles
+document.head.appendChild(styleSheet)
+`;
 
 
 
