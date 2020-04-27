@@ -10,9 +10,5 @@ export function useragent() {
 		return {
 			requestHeaders: details.requestHeaders
 		};
-	};
-	chrome.webRequest.onBeforeSendHeaders.addListener(handler, {
-		urls: ["<all_urls>"]
-	}, ["blocking", "requestHeaders"]);
-	// body...
-}
+	}
+	}
