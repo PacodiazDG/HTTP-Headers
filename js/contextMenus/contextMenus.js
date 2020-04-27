@@ -46,7 +46,15 @@ function notifications(status) {
     isClickable: false
   });
 }
-
+chrome.contextMenus.create({
+  "title": "Sandbox",
+  "contexts": ["browser_action"],
+  "onclick": (info, tab) => {
+    chrome.tabs.create({
+      url: "sandbox.html"
+    })
+  }
+});
 chrome.contextMenus.create({
   "title": "About",
   "contexts": ["browser_action"],
@@ -57,7 +65,16 @@ chrome.contextMenus.create({
   }
 });
 chrome.contextMenus.create({
-  "title": "issues",
+  "title": "XSS Payload",
+  "contexts": ["browser_action"],
+  "onclick": (info, tab) => {
+    chrome.tabs.create({
+      url: "https://raw.githubusercontent.com/Pgaijin66/XSS-Payloads/master/payload.txt"
+    })
+  }
+});
+chrome.contextMenus.create({
+  "title": "Issues",
   "contexts": ["browser_action"],
   "onclick": (info, tab) => {
     chrome.tabs.create({
@@ -66,15 +83,7 @@ chrome.contextMenus.create({
   }
 });
 
-chrome.contextMenus.create({
-  "title": "Sandbox",
-  "contexts": ["browser_action"],
-  "onclick": (info, tab) => {
-    chrome.tabs.create({
-      url: "sandbox.html"
-    })
-  }
-});
+
 
 chrome.contextMenus.create({
   "title": "Send to decoder",
