@@ -64,15 +64,7 @@ chrome.contextMenus.create({
     })
   }
 });
-chrome.contextMenus.create({
-  "title": "XSS Payload",
-  "contexts": ["browser_action"],
-  "onclick": (info, tab) => {
-    chrome.tabs.create({
-      url: "https://raw.githubusercontent.com/Pgaijin66/XSS-Payloads/master/payload.txt"
-    })
-  }
-});
+
 chrome.contextMenus.create({
   "title": "Issues",
   "contexts": ["browser_action"],
