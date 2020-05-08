@@ -50,7 +50,7 @@ chrome.tabs.query({
   var url = tabs[0].url;
   params = getSearchParameters();
   params = atob(params.q);
-  document.getElementById("root").innerHTML = `<div class="alert alert-primary" role="alert"><p class="text">
+  document.getElementById("root").innerHTML = `<div class="alert alert-dark" role="alert"><p class="text">
  ${xssFilters.inHTMLData(params)}</p>
 </div>`;
   document.getElementById("url").value = params.split('?')[0] + "?";
@@ -75,5 +75,11 @@ chrome.tabs.query({
   go.addEventListener('click', () => {
     gos();
   }, false);
+var Changeurl = document.getElementById('Changeurl');
+  Changeurl.addEventListener('click', () => {
+  var url = prompt("Url:", "");
+  window.location.href='/Change%20URL%20parameters.html?q='+btoa(url);
+  }, false);
 });
+/*************************************************/
 /*************************************************/

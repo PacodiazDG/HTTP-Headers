@@ -1,6 +1,5 @@
 #let,
 body {
-  color: #000;
   display: block
 }
 
@@ -14,14 +13,6 @@ body {
 .area,
 body {
   display: block
-}
-
-body {
-  min-width: 200px;
-  width: auto;
-  border-radius: 4px;
-  background-color: hsla(0, 0%, 100%, 0.95) !important;
-  border-color: #121316 !important
 }
 
 #let {
@@ -43,17 +34,6 @@ button {
 h3 {
   color: #a5a7ba;
   font-family: Montserrat, sans-serif
-}
-
-.aec {
-  border: 0;
-  color: #000;
-  font-size: 14px !important;
-  width: 100%;
-  height: auto;
-  font-weight: 400;
-  padding: .5em;
-  font-family: 'Roboto', sans-serif;
 }
 
 .area {
@@ -109,12 +89,12 @@ hr.style-one {
     transform: rotate(0);
     animation-timing-function: cubic-bezier(.55, .055, .675, .19)
   }
-
+  
   50% {
     transform: rotate(900deg);
     animation-timing-function: cubic-bezier(.215, .61, .355, 1)
   }
-
+  
   100% {
     transform: rotate(1800deg)
   }
@@ -162,4 +142,13 @@ hr.style-one {
   position: relative;
   text-shadow: none;
   width: 48px;
+}
+
+.salto {
+  display: block;
+  /* makes it have a width */
+  content: "";
+  /* clears default height */
+  margin-top: 0;
+  /* change this to whatever height you want it */
 }
