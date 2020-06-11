@@ -68,6 +68,14 @@ async function dnsget(argument) {
   }
 }
 /******************************************************************************/
+async function getmyipaddres() {
+  var respuestaclass = new httprequest(`https://api.shodan.io/tools/myip?key=${keyshodan}`, "GET");
+  var rsq = await respuestaclass.httpsend();
+  document.getElementById("my-ip").innerHTML = `<p>My ip addres: ${rsq.responseText}</p>`;
+
+  return ;
+}
+
 chrome.tabs.query({
   active: true,
   currentWindow: true
@@ -77,5 +85,6 @@ chrome.tabs.query({
   console.log(tabname)
   var ipad = dnsget(tabname);
   ipget(ipad);
+  getmyipaddres();
 });
 /******************************************************************************/
