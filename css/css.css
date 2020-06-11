@@ -1,9 +1,15 @@
 #let,
 body {
   display: block
-  font-family: Inter, sans-serif;
+  font-family: 'Roboto', sans-serif;
+  font-size: inherit!important;
+  padding: 0!important;
 }
 
+
+a:link {
+  color: #325be6;
+}
 .aec,
 body {
   margin: 10px auto;
@@ -62,7 +68,6 @@ hr.style-one {
   border: 0;
   height: 1px;
   background: #333;
-  background-image: linear-gradient(to right, #ccc, #333, #ccc)
 }
 
 .lds-hourglass {
@@ -103,7 +108,7 @@ hr.style-one {
 
 .br {
   display: block;
-  margin: 10px 0;
+  margin: 15px 0;
 }
 
 .btn-outline-secondary {

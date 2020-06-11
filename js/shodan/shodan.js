@@ -33,7 +33,7 @@ async function ipget(argument) {
     for (var i = 0; i < rsq.ports.length; i++) {
       x = rsq.ports[i];
       document.getElementById("infodns").innerHTML += `<a href="https://www.shodan.io/host/${await argument}" target="_blank" rel="noopener noreferrer">
-<div class="Cuadrado"><p style="position: relative;top: 50%;transform: translateY(-50%);">${x}</p></div>
+<div class="Cuadrado" style=" display: flex;"><p style="display: flex;align-items: center;margin: auto auto;">${x}</p></div>
 </a>
 `;
     }
