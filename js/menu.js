@@ -6,16 +6,6 @@ if (localStorage.getItem("status") === "false") {
   document.getElementById("Debugger").checked = true;
 }
 /******************************************************************************/
-function url2(host) {
-  var input = document.createElement('textarea');
-  document.body.appendChild(input);
-  input.value = host;
-  input.focus();
-  input.select();
-  document.execCommand('Copy');
-  input.remove();
-}
-/******************************************************************************/
 chrome.tabs.query({
   active: true,
   currentWindow: true
@@ -28,11 +18,6 @@ chrome.tabs.query({
     window.open(`https://dnsdumpster.com/`, '_blank', 'toolbar=0,menubar=0,location=0');
     window.open(`https://censys.io/ipv4?q=${hostname}&`, '_blank', 'toolbar=0,menubar=0,location=0');
     window.open(`https://www.zoomeye.org/searchResult?q=${hostname}`, '_blank', 'toolbar=0,menubar=0,location=0');
-  }, false);
-  /******************************************************************************/
-  var url = document.getElementById('url');
-  url.addEventListener('click', () => {
-    url2(hostname);
   }, false);
   /******************************************************************************/
   var parms = document.getElementById('parms');
