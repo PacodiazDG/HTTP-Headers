@@ -64,7 +64,6 @@ chrome.contextMenus.create({
     })
   }
 });
-
 chrome.contextMenus.create({
   "title": "Issues",
   "contexts": ["browser_action"],
@@ -74,9 +73,6 @@ chrome.contextMenus.create({
     })
   }
 });
-
-
-
 chrome.contextMenus.create({
   "title": "Send to decoder",
    contexts:["selection"],

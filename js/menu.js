@@ -25,6 +25,24 @@ chrome.tabs.query({
     window.open(`Change URL parameters.html?q=${btoa(tabs[0].url)}`, '_blank');
   }, false);
   /******************************************************************************/
+  var parms = document.getElementById('browsingData');
+  parms.addEventListener('click', () => {
+    var url = new URL(tabs[0].url)
+    var domain = `${url.origin}`;
+    chrome.browsingData.remove({
+            "origins": [domain]
+          }, {
+            "cacheStorage": true,
+            "cookies": true,
+            "fileSystems": true,
+            "indexedDB": true,
+            "localStorage": true,
+            "pluginData": true,
+            "serviceWorkers": true,
+            "webSQL": true
+          });
+  }, false);
+  /******************************************************************************/
   var nmap = document.getElementById('Nmap');
   nmap.addEventListener('click', () => {
     hackertarget(hostname);
