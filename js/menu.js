@@ -20,7 +20,12 @@ chrome.tabs.query({
     window.open(`https://www.zoomeye.org/searchResult?q=${hostname}`, '_blank', 'toolbar=0,menubar=0,location=0');
   }, false);
   /******************************************************************************/
-  var parms = document.getElementById('parms');
+  var whois = document.getElementById('Whois');
+  whois.addEventListener('click', () => {
+    ipapi(hostname);
+  }, false);
+  /******************************************************************************/
+ var parms = document.getElementById('parms');
   parms.addEventListener('click', () => {
     window.open(`Change URL parameters.html?q=${btoa(tabs[0].url)}`, '_blank');
   }, false);
@@ -132,3 +137,13 @@ async function header(url) {
   }
 }
 /*******************************************************************/
+async function ipapi(host) {
+  let respuestaclass = new httprequest(`http://demo.ip-api.com/json/${host}`, "GET");
+  var rsq = await respuestaclass.httpsend();
+  rsq = JSON.parse(rsq.responseText);
+    document.getElementById("info").innerHTML =`ISP: ${xssFilters.inHTMLData(rsq.isp)}<hr class="style-one">`;
+    document.getElementById("info").innerHTML +=`Country: ${xssFilters.inHTMLData(rsq.country)}<hr class="style-one">`;
+    document.getElementById("info").innerHTML +=`RegionName: ${xssFilters.inHTMLData(rsq.regionName)}<hr class="style-one">`;
+    document.getElementById("info").innerHTML +=`ISP: ${xssFilters.inHTMLData(rsq.country)}<hr class="style-one">`;
+return;
+}
