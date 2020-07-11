@@ -33,7 +33,7 @@ async function ipget(argument) {
     for (var i = 0; i < rsq.ports.length; i++) {
       x = rsq.ports[i];
       document.getElementById("infodns").innerHTML += `<a href="https://www.shodan.io/host/${await argument}" target="_blank" rel="noopener noreferrer">
-<div class="Cuadrado"><p style="position: relative;top: 50%;transform: translateY(-50%);">${x}</p></div>
+<div class="Cuadrado" style=" display: flex;"><p style="display: flex;align-items: center;margin: auto auto;">${x}</p></div>
 </a>
 `;
     }
@@ -68,6 +68,14 @@ async function dnsget(argument) {
   }
 }
 /******************************************************************************/
+async function getmyipaddres() {
+  var respuestaclass = new httprequest(`https://api.shodan.io/tools/myip?key=${keyshodan}`, "GET");
+  var rsq = await respuestaclass.httpsend();
+  document.getElementById("my-ip").innerHTML = `<p>My ip addres: ${rsq.responseText}</p>`;
+
+  return ;
+}
+
 chrome.tabs.query({
   active: true,
   currentWindow: true
@@ -77,5 +85,6 @@ chrome.tabs.query({
   console.log(tabname)
   var ipad = dnsget(tabname);
   ipget(ipad);
+  getmyipaddres();
 });
 /******************************************************************************/

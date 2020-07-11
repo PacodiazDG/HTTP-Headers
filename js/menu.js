@@ -6,16 +6,6 @@ if (localStorage.getItem("status") === "false") {
   document.getElementById("Debugger").checked = true;
 }
 /******************************************************************************/
-function url2(host) {
-  var input = document.createElement('textarea');
-  document.body.appendChild(input);
-  input.value = host;
-  input.focus();
-  input.select();
-  document.execCommand('Copy');
-  input.remove();
-}
-/******************************************************************************/
 chrome.tabs.query({
   active: true,
   currentWindow: true
@@ -30,14 +20,32 @@ chrome.tabs.query({
     window.open(`https://www.zoomeye.org/searchResult?q=${hostname}`, '_blank', 'toolbar=0,menubar=0,location=0');
   }, false);
   /******************************************************************************/
-  var url = document.getElementById('url');
-  url.addEventListener('click', () => {
-    url2(hostname);
+  var whois = document.getElementById('Whois');
+  whois.addEventListener('click', () => {
+    ipapi(hostname);
   }, false);
   /******************************************************************************/
-  var parms = document.getElementById('parms');
+ var parms = document.getElementById('parms');
   parms.addEventListener('click', () => {
     window.open(`Change URL parameters.html?q=${btoa(tabs[0].url)}`, '_blank');
+  }, false);
+  /******************************************************************************/
+  var parms = document.getElementById('browsingData');
+  parms.addEventListener('click', () => {
+    var url = new URL(tabs[0].url)
+    var domain = `${url.origin}`;
+    chrome.browsingData.remove({
+            "origins": [domain]
+          }, {
+            "cacheStorage": true,
+            "cookies": true,
+            "fileSystems": true,
+            "indexedDB": true,
+            "localStorage": true,
+            "pluginData": true,
+            "serviceWorkers": true,
+            "webSQL": true
+          });
   }, false);
   /******************************************************************************/
   var nmap = document.getElementById('Nmap');
@@ -129,3 +137,13 @@ async function header(url) {
   }
 }
 /*******************************************************************/
+async function ipapi(host) {
+  let respuestaclass = new httprequest(`http://demo.ip-api.com/json/${host}`, "GET");
+  var rsq = await respuestaclass.httpsend();
+  rsq = JSON.parse(rsq.responseText);
+    document.getElementById("info").innerHTML =`ISP: ${xssFilters.inHTMLData(rsq.isp)}<hr class="style-one">`;
+    document.getElementById("info").innerHTML +=`Country: ${xssFilters.inHTMLData(rsq.country)}<hr class="style-one">`;
+    document.getElementById("info").innerHTML +=`RegionName: ${xssFilters.inHTMLData(rsq.regionName)}<hr class="style-one">`;
+    document.getElementById("info").innerHTML +=`ISP: ${xssFilters.inHTMLData(rsq.country)}<hr class="style-one">`;
+return;
+}
