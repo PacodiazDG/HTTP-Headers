@@ -13,9 +13,6 @@
 #### Waf test
 ![image](https://user-images.githubusercontent.com/26071783/77280378-0c0c3700-6cbc-11ea-89f4-33e311912011.png)
 
-#### Decoder
-![image](https://user-images.githubusercontent.com/26071783/77280491-5d1c2b00-6cbc-11ea-835f-d25a22698fe1.png)
-
 #### Change URL parameters
 ![image](https://user-images.githubusercontent.com/26071783/77280651-cf8d0b00-6cbc-11ea-8488-2d491f5eb2f2.png)
 
