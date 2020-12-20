@@ -10,7 +10,7 @@ import {
   EnablesDump1,
 } from './module/inyeccion.js';
 import {
-  useragent
+  UserAgent
 } from './browser-fingerprint/user-agent.js';
 
 chrome.runtime.onMessage.addListener((msg, sender_info, Reply) => {
@@ -35,10 +35,10 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
   };
   if (localStorage.getItem("status") === "true") {
     chrome.browserAction.setBadgeText({
-      text: "!"
+      text: "Ok"
     });
     chrome.browserAction.setBadgeBackgroundColor({
-      color: "blue"
+      color: "#008000"
     });
     if (changeInfo.status === 'complete') {
       if (localStorage.getItem("Debugging1") == "true") {
@@ -50,7 +50,7 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
         executeScript(enableContextMenus());
       }
       if (localStorage.getItem("UserAgent1") == "true") {
-        useragent();
+        UserAgent();
       }
       if (localStorage.getItem("Debugging3") == "true") {
         var control;
