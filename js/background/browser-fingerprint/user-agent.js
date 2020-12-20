@@ -3,7 +3,7 @@ function Callbackuseragent(Header) {
 	if (UserAgent == null) {
 		return;
 	}
-	if((localStorage.getItem("UserAgent1"))==="false"||(localStorage.getItem("status") === "false")){
+	if ((localStorage.getItem("UserAgent1")) === "false" || (localStorage.getItem("status") === "false")) {
 		chrome.webRequest.onBeforeSendHeaders.removeListener(
 			Callbackuseragent
 		);
