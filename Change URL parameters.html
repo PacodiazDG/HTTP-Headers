@@ -3,32 +3,25 @@
 
 <head>
   <script src="./js/lib/xss-filters.1.2.7.min.js"></script>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+ <!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
   <script type="text/javascript" src="./js/Change URL parameters/Change URL parameters.js"></script>
+  <link src="./css/CUP.css"/>
   <title></title>
 </head>
 
 <body>
   <style type="text/css">
-body {
-  background: #000000 ;
-  color: #008000;
-  overflow-x: hidden;
-}
 
-.text {
-  text-overflow: ellipsis;
-}
   </style>
   <div id="root"></div>
   <div class="form-group">
     <label for="url">URL:</label>
     <textarea class="form-control" rows="5" id="url" name="text"></textarea>
   </div>
-  <div class="container text-center">
-    <button type="submit" class="btn btn-outline-light text-center" id="Go">Edit URL</button>
-    <button type="button" class="btn btn-link" id="Changeurl">Change url</button>
+  <div class="container text-center" style="padding:10px;">
+    <button type="submit" class="btn btn-outline-primary text-center" id="Go">Edit URL</button>
+    <button type="button" class="btn btn-outline-primary" id="Changeurl">Change url</button>
   </div>
 </body>
 

@@ -1,0 +1,9 @@
+body {
+    background: #fff ;
+    color: #008000;
+    overflow-x: hidden;
+  }
+  
+  .text {
+    text-overflow: ellipsis;
+  }
