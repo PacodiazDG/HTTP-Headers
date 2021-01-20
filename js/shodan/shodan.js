@@ -2,6 +2,8 @@
 
 
 */
+
+
 "use strict";
 const keyshodan = localStorage.getItem("keyshodan");
 const Enableshodan1 = localStorage.getItem("Enableshodan1");
@@ -18,6 +20,7 @@ async function ipget(argument) {
       return;
     }
     rsq = JSON.parse(rsq.responseText)
+    console.log(rsq)
     document.getElementById("infodns").innerHTML += `<p style="font-size:14px;">ISP: ${rsq['isp']}</p>`;
     document.getElementById("infodns").innerHTML += `<p style="font-size:14px;">Country name: ${rsq['country_name']}</p>`;
     document.getElementById("infodns").innerHTML += `<p style="font-size:14px;">ORG: ${rsq['org']}</p>`;
@@ -61,7 +64,7 @@ async function dnsget(argument) {
       document.getElementById("ip").innerHTML = `<span class="badge badge-danger">Shodan doesn't solve the host</span>`;
       return -1;
     }
-    document.getElementById("ip").innerHTML = `<i class="oi oi-globe"></i> ${rsq[argument]}`;
+    document.getElementById("ip").innerHTML = `<i class="oi oi-globe"></i> ${  xssFilters.inHTMLData(rsq[argument]) }`;
     return rsq[argument];
   } catch (e) {
     document.getElementById("ip").innerHTML = `<span class="badge badge-danger">Error</span>`;
@@ -71,9 +74,8 @@ async function dnsget(argument) {
 async function getmyipaddres() {
   var respuestaclass = new httprequest(`https://api.shodan.io/tools/myip?key=${keyshodan}`, "GET");
   var rsq = await respuestaclass.httpsend();
-  document.getElementById("my-ip").innerHTML = `<p>My ip addres: ${rsq.responseText}</p>`;
-
-  return ;
+  document.getElementById("my-ip").innerHTML = `<p>My ip addres: ${  xssFilters.inHTMLData(rsq.responseText) }</p>`;
+  return;
 }
 
 chrome.tabs.query({
@@ -82,9 +84,9 @@ chrome.tabs.query({
 }, (tabs) => {
   var url = tabs[0].url;
   var tabname = (new URL(url)).hostname;
-  console.log(tabname)
   var ipad = dnsget(tabname);
   ipget(ipad);
-  getmyipaddres();
+  setTimeout(getmyipaddres, 2000);
+
 });
 /******************************************************************************/
