@@ -56,6 +56,15 @@ chrome.contextMenus.create({
   }
 });
 chrome.contextMenus.create({
+  "title": "About",
+  "contexts": ["browser_action"],
+  "onclick": (info, tab) => {
+    chrome.tabs.create({
+      url: "Proxy Enable"
+    })
+  }
+});
+chrome.contextMenus.create({
   "title": "Issues",
   "contexts": ["browser_action"],
   "onclick": (info, tab) => {

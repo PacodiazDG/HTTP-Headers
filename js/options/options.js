@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
     localStorage.setItem("waflevel", (document.getElementById("waflevel").value));
   });
   /*******************************************************************************************/
-  /*******************************************************************************************/
   var Debugging1 = document.getElementById('Debugging1');
   Debugging1.addEventListener('click', () => {
     if (Debugging1.checked) {
@@ -116,6 +115,31 @@ var UserAgent1javasc1 = document.getElementById('UserAgent1javasc1');
   /******************************************************************************************/
   document.getElementById('Theme').addEventListener('change', (e) => {
     localStorage.setItem("Theme", e.target.value);
+  });
+  /******************************************************************************************/
+  var ProxyEnable = document.getElementById('ProxyEnabe1');
+  ProxyEnable.addEventListener('click', () => {
+    if (ProxyEnable.checked) {
+      localStorage.setItem("ProxyEnabe1", "true");
+      var config = {
+        mode: "fixed_servers",
+        rules: {
+          singleProxy: {
+            scheme: "http",
+            host: 	"localhost",		// Proxy IP or URL: type -> string
+            port: 	8080		// Proxy port : type -> int
+          },
+          bypassList: ["localhost"]
+        }
+      };
+     // chrome.proxy.settings.set({value: config, scope: "regular"}, function() {});
+    } else {
+      localStorage.setItem("ProxyEnabe1", "false");
+      var config = {
+        mode: "system"
+      };
+    //  chrome.proxy.settings.set({value: config, scope: "regular"}, function() {});
+    }
   });
 });
 /******************************************************************************************/
