@@ -33,8 +33,7 @@
     "notifications",
     "webRequest",
     "browsingData",
-    "webRequestBlocking",
-    "proxy"
+    "webRequestBlocking"
   ],
   "web_accessible_resources": [ "options.html", "/js/options.js"],
   "content_security_policy":  "script-src 'self' 'unsafe-eval'; object-src 'self'"

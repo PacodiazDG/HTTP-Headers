@@ -13,7 +13,6 @@ if (localStorage.getItem("install") === null) {
 	localStorage.setItem("UserAgent1", false);
 	localStorage.setItem("UserAgent1javasc1", false);
 	localStorage.setItem("install", true);
-	localStorage.setItem("ProxyEnabe1", false);
 	chrome.tabs.create({
 		url: "options.html"
 	});
