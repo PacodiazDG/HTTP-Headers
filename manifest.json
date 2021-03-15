@@ -1,6 +1,6 @@
 {
   "name": "HTTP-Headers",
-  "version": "0.5.2",
+  "version": "0.7.0",
   "manifest_version": 2,
   "description": "HTTP-Headers",
   "icons": {
@@ -24,7 +24,6 @@
         "run_at":    "document_start"
     } ],
   "permissions": [
-    "<all_urls>",
     "tabs",
     "http://*/*",
     "https://*/*",
@@ -34,8 +33,7 @@
     "notifications",
     "webRequest",
     "browsingData",
-    "webRequestBlocking",
-    "\u003Call_urls>"
+    "webRequestBlocking"
   ],
   "web_accessible_resources": [ "options.html", "/js/options.js"],
   "content_security_policy":  "script-src 'self' 'unsafe-eval'; object-src 'self'"

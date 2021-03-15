@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
     localStorage.setItem("waflevel", (document.getElementById("waflevel").value));
   });
   /*******************************************************************************************/
-  /*******************************************************************************************/
   var Debugging1 = document.getElementById('Debugging1');
   Debugging1.addEventListener('click', () => {
     if (Debugging1.checked) {
@@ -117,5 +116,6 @@ var UserAgent1javasc1 = document.getElementById('UserAgent1javasc1');
   document.getElementById('Theme').addEventListener('change', (e) => {
     localStorage.setItem("Theme", e.target.value);
   });
+  /******************************************************************************************/
 });
 /******************************************************************************************/

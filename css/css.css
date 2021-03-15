@@ -1,6 +1,5 @@
-#let,
-body {
-  display: block
+#let,body {
+  display: block;
   font-family: 'Roboto', sans-serif;
   font-size: inherit!important;
   padding: 0!important;
@@ -19,7 +18,7 @@ body {
 #let,
 .area,
 body {
-  display: block
+  display: block;
 }
 
 #let {

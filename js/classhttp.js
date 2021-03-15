@@ -16,7 +16,6 @@ class httprequest {
     var methods2 = this.methods;
     if (!this.isValidURL(url2)) {
       throw "No Valid URL";
-      return;
     }
     return new Promise(function(resolve, reject, url) {
       let xhr = new XMLHttpRequest();

@@ -1,13 +1,4 @@
 chrome.contextMenus.create({
-  "title": "Decoder",
-  "contexts": ["browser_action"],
-  "onclick": (info, tab) => {
-    chrome.tabs.create({
-      url: "decoder.html?q="
-    })
-  }
-});
-chrome.contextMenus.create({
   "title": "Change URL parameters",
   "contexts": ["browser_action"],
   "onclick": (info, tab) => {
@@ -73,12 +64,4 @@ chrome.contextMenus.create({
     })
   }
 });
-chrome.contextMenus.create({
-  "title": "Send to decoder",
-   contexts:["selection"],
-  "onclick": (info, tab) => {
-    chrome.tabs.create({
-      url: "decoder.html?q="+ Base64.encode(info.selectionText)
-    })
-  }
-});
+

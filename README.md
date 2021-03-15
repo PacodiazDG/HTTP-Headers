@@ -13,17 +13,13 @@
 #### Waf test
 ![image](https://user-images.githubusercontent.com/26071783/77280378-0c0c3700-6cbc-11ea-89f4-33e311912011.png)
 
-#### Decoder
-![image](https://user-images.githubusercontent.com/26071783/77280491-5d1c2b00-6cbc-11ea-835f-d25a22698fe1.png)
-
 #### Change URL parameters
-![image](https://user-images.githubusercontent.com/26071783/77280651-cf8d0b00-6cbc-11ea-8488-2d491f5eb2f2.png)
+
+![image](https://user-images.githubusercontent.com/26071783/111155388-04434380-855a-11eb-8f0d-b369e05f2336.png)
 
 #### Change the Browser User Agent
 ![image](https://user-images.githubusercontent.com/26071783/77281094-09124600-6cbe-11ea-976c-58b2a7085d77.png)
 
-#### Bypass Debug Protection
-
+#### Bypass Debug Protection 
 ![image](https://user-images.githubusercontent.com/26071783/77281428-dfa5ea00-6cbe-11ea-987e-61c845cd8fee.png)
-
 ![image](https://user-images.githubusercontent.com/26071783/77281196-57bfe000-6cbe-11ea-92a0-e73a88ce9311.png)

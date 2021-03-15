@@ -14,8 +14,7 @@ function gos() {
       if (i > 2) {
         document.getElementById("url").value += `&${document.getElementById(i).innerText}=`;
       }
-      else
-      {
+      else {
         document.getElementById("url").value += `${document.getElementById(i).innerText}=`;
       }
     }
@@ -38,15 +37,15 @@ function transformToAssocArray(prmstr) {
 }
 /*************************************************/
 const getUrlParams = url => `${url}?`.split('?')[1].split('&').reduce((params, pair) => ((key, val) => key ? {
-    ...params,
-    [key]: val
-  } : params)
+  ...params,
+  [key]: val
+} : params)
   (...`${pair}=`.split('=').map(decodeURIComponent)), {});
 /*************************************************/
 chrome.tabs.query({
   'active': true,
   'lastFocusedWindow': true
-}, function(tabs) {
+}, function (tabs) {
   var url = tabs[0].url;
   params = getSearchParameters();
   params = atob(params.q);
@@ -62,23 +61,27 @@ chrome.tabs.query({
   for (var k in jsonparams) {
     document.getElementById("root").innerHTML += `<div class="input-group mb-3">
   <div class="input-group-prepend">
-    <span class="input-group-text" id="${golb=golb+1}">${xssFilters.inUnQuotedAttr(Object.keys(params2)[n])}</span>
+    <span class="input-group-text" id="${golb = golb + 1}">${xssFilters.inUnQuotedAttr(Object.keys(params2)[n])}</span>
   </div>
-  <input type="text" class="form-control" value="${xssFilters.inUnQuotedAttr(jsonparams[k])}" id="${golb=golb+1}">
+  <input type="text" class="form-control" value="${xssFilters.inUnQuotedAttr(jsonparams[k])}" id="${golb = golb + 1}">
   <div class="input-group-append">
   </div>
 </div>
    `;
     n++;
   }
+  /*************************************************/
+
   var go = document.getElementById('Go');
   go.addEventListener('click', () => {
     gos();
   }, false);
-var Changeurl = document.getElementById('Changeurl');
+  var Changeurl = document.getElementById('Changeurl');
   Changeurl.addEventListener('click', () => {
-  var url = prompt("Url:", "");
-  window.location.href='/Change%20URL%20parameters.html?q='+btoa(url);
+    var url = prompt("Url:", "");
+    if (url!=""){
+      window.location.href = '/Change%20URL%20parameters.html?q=' + btoa(url);
+    }
   }, false);
 });
 /*************************************************/

@@ -11,6 +11,8 @@ document.getElementById('waflevel').value = localStorage.getItem("waflevel");
   getactivelocalStorage("Enableshodan", 1);
   getactivelocalStorage("UserAgent", 1);
   getactivelocalStorage("UserAgent1javasc", 1);
+  getactivelocalStorage("ProxyEnabe", 1);
+
   document.getElementById('shodanapikey').value = localStorage.getItem("keyshodan");
   document.getElementById('varcommand').value = localStorage.getItem("varcommand");
   document.getElementById('UserAgents').value = localStorage.getItem("User-Agent");
