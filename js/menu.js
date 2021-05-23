@@ -62,11 +62,6 @@ chrome.tabs.query({
       localStorage.setItem("status", "false");
     }
   }, false);
-  /******************************************************************************/
-  var DisclaimerAlert = document.getElementById('dis');
-  DisclaimerAlert.addEventListener('click', () => {
-    localStorage.setItem("DisclaimerAlert", "ok");
-  }, false);
 });
 /******************************************************************************/
 chrome.tabs.query({
