@@ -60,7 +60,7 @@ chrome.contextMenus.create({
   "contexts": ["browser_action"],
   "onclick": (info, tab) => {
     chrome.tabs.create({
-      url: "issues.html"
+      url: "https://portswigger.net/kb/issues"
     })
   }
 });
