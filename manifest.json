@@ -1,6 +1,6 @@
 {
   "name": "HTTP-Headers",
-  "version": "0.7.0",
+  "version": "0.8.1",
   "manifest_version": 2,
   "description": "HTTP-Headers",
   "icons": {
@@ -37,5 +37,4 @@
   ],
   "web_accessible_resources": [ "options.html", "/js/options.js"],
   "content_security_policy":  "script-src 'self' 'unsafe-eval'; object-src 'self'"
-
 }
