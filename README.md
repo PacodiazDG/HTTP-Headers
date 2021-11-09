@@ -4,9 +4,6 @@
 #### Response Headers
 ![image](https://user-images.githubusercontent.com/26071783/77280077-4c1eea00-6cbb-11ea-8638-43b60ea045be.png)
 
-#### Nmap by hackertarget
-![image](https://user-images.githubusercontent.com/26071783/77280298-d9fad500-6cbb-11ea-9086-c776050362d6.png)
-
 #### Shodan information  
 ![image](https://user-images.githubusercontent.com/26071783/77280161-7d97b580-6cbb-11ea-80e6-3e37c32748f8.png)
 

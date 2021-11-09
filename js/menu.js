@@ -48,11 +48,6 @@ chrome.tabs.query({
           });
   }, false);
   /******************************************************************************/
-  var nmap = document.getElementById('Nmap');
-  nmap.addEventListener('click', () => {
-    hackertarget(hostname);
-  }, false);
-  /******************************************************************************/
   var Debugger = document.getElementById('Debugger');
   Debugger.addEventListener('click', () => {
     var ok = document.getElementById("Debugger");
@@ -109,12 +104,6 @@ chrome.tabs.query({
 function getHostname(url) {
   var url = new URL(url);
   return url.hostname;
-}
-/******************************************************************************/
-async function hackertarget(host) {
-  let respuestaclass = new httprequest(`http://api.hackertarget.com/nmap/?q=${host}`, "GET");
-  var rsq = await respuestaclass.httpsend();
-  document.getElementById("info").innerHTML = xssFilters.inHTMLData(rsq.responseText);
 }
 /******************************************************************************/
 async function header(url) {
