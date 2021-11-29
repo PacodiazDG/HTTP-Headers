@@ -1,5 +1,6 @@
 
-const css = "*{-webkit-touch-callout: default;-webkit-user-select: default !important ; -khtml-user-select: default !important;-moz-user-select: default !important;-ms-user-select: default !important;user-select: text !important;}";
+// eslint-disable-next-line max-len
+const css = '*{-webkit-touch-callout: default;-webkit-user-select: default !important ; -khtml-user-select: default !important;-moz-user-select: default !important;-ms-user-select: default !important;user-select: text !important;}';
 const codeenableContextMenu = `
 function enableContextMenu(aggressive = false) {
     void(document.ondragstart = null);
@@ -63,15 +64,14 @@ document.head.appendChild(styleSheet)
 `;
 
 
-
 export function enableContextMenus() {
-   return codeenableContextMenu;
+  return codeenableContextMenu;
 }
 
 export function Debugging7control1() {
-    var Debugging7control1s = `
+  const Debugging7control1s = `
 console.log("#1");
-var myobj = JSON.parse('${localStorage.getItem("varcommand")}');
+var myobj = JSON.parse('${localStorage.getItem('varcommand')}');
 Object.keys(myobj.vars).forEach(function(key) {
   for (var b in window) {
     if (window.hasOwnProperty(b)) {
@@ -86,22 +86,22 @@ Object.keys(myobj.vars).forEach(function(key) {
   }
 });
 `;
-   return Debugging7control1s;
+  return Debugging7control1s;
 }
 
 export function Debugging7control2() {
-    var Debugging7control2s =`console.log("#2");
-var myobj = JSON.parse('${localStorage.getItem("varcommand")}');
+  const Debugging7control2s =`console.log("#2");
+var myobj = JSON.parse('${localStorage.getItem('varcommand')}');
 Object.keys(myobj.vars).forEach(function(key) {
   eval(myobj.vars[key] + "=undefined;")
   eval("console.log(" + myobj.vars[key] + ");")
 });`;
-   return Debugging7control2s;
+  return Debugging7control2s;
 }
 
 export function EnablesDump1() {
-var EnablesDump =` Object.defineProperty(navigator, 'userAgent', {
-    get: function () { return 'Mozilla/5.0 (Windows NT 6.2; WOW64; rv:28.0) Gecko/20100101 Firefox/28.0)';
+// eslint-disable-next-line max-len
+  const EnablesDump =` Object.defineProperty(navigator, 'userAgent', {get: function () { return 'Mozilla/5.0 (Windows NT 6.2; WOW64; rv:28.0) Gecko/20100101 Firefox/28.0)';
      }});`;
-return EnablesDump;
+  return EnablesDump;
 }

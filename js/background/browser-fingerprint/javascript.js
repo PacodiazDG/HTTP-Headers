@@ -1,13 +1,13 @@
 function codeinjection(argument) {
-	var script = document.createElement("script");
-	script.type = "text/javascript";
-	script.innerHTML = argument;
-	document.getElementsByTagName('html')[0].appendChild(script);
-	return true;
+  const script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.innerHTML = argument;
+  document.getElementsByTagName('html')[0].appendChild(script);
+  return true;
 }
-var code = (userAgent) => {
-	'use strict';
-	return `navigator.__defineGetter__('userAgent', function(){
+const code = (userAgent) => {
+  'use strict';
+  return `navigator.__defineGetter__('userAgent', function(){
     return '${userAgent}' 
 });
 navigator.__defineGetter__('appVersion', function(){
@@ -21,10 +21,10 @@ navigator.__defineGetter__('platform', function(){
 });
 `;
 };
-var escapes;
+let escapes;
 chrome.runtime.sendMessage('', (r) => {
-	escapes = r;
-	if (escapes != undefined) {
-		console.log(codeinjection(code(escapes)));
-	}
+  escapes = r;
+  if (escapes != undefined) {
+    console.log(codeinjection(code(escapes)));
+  }
 });
