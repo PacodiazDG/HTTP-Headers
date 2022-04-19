@@ -1,7 +1,7 @@
 {
   "name": "HTTP-Headers",
   "version": "0.8.1",
-  "manifest_version": 2,
+  "manifest_version": 3,
   "description": "HTTP-Headers",
   "icons": {
     "128": "icons/icon128.png"
