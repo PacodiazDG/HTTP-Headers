@@ -1,15 +1,20 @@
 'use strict';
 /** **************************************************************************/
-if (localStorage.getItem('status') === 'false') {
-  document.getElementById('Debugger').checked = false;
-} else {
-  document.getElementById('Debugger').checked = true;
+async function CheckDebugger(params) {
+  console.log((await chrome.storage.local.get(['status'])).status);
+  if (((await chrome.storage.local.get(['status'])).status)  === false) {
+    document.getElementById('Debugger').checked = false;
+  } else {
+    document.getElementById('Debugger').checked = true;
+  }
 }
+
 /** *************************************************************************/
 chrome.tabs.query({
   active: true,
   currentWindow: true,
-}, (tabs) => {
+}, async (tabs) => {
+  CheckDebugger();
   const hostname = getHostname(tabs[0].url);
   const CDN = document.getElementById('CDN');
 
@@ -58,9 +63,9 @@ chrome.tabs.query({
   Debugger.addEventListener('click', () => {
     const ok = document.getElementById('Debugger');
     if (ok.checked) {
-      localStorage.setItem('status', 'true');
+      chrome.storage.local.set({status: true});
     } else {
-      localStorage.setItem('status', 'false');
+      chrome.storage.local.set({status: false});
     }
   }, false);
 });

@@ -13,6 +13,8 @@ import {
   UserAgent
 } from './browser-fingerprint/user-agent.js';
 
+//Esta funcion Cambia el fingerPrinting del navegador a nivel javascript
+/*
 chrome.runtime.onMessage.addListener((msg, sender_info, Reply) => {
   if (localStorage.getItem("UserAgent1javasc1") == "true" && localStorage.getItem("status") === "true") {
     console.log(true);
@@ -21,7 +23,10 @@ chrome.runtime.onMessage.addListener((msg, sender_info, Reply) => {
     Reply(undefined);
   }
 });
-chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+*/
+
+//Escucha todos los eventos 
+chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
   if (!isValidURL(tab.url)) {
     return;
   }
@@ -33,13 +38,25 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
     });
     return true
   };
-  if (localStorage.getItem("status") === "true") {
-    chrome.browserAction.setBadgeText({
-      text: "Ok"
-    });
-    chrome.browserAction.setBadgeBackgroundColor({
-      color: "#008000"
-    });
+  if ((await chrome.storage.local.get(['status'])).status === true) {
+
+    chrome.action.setBadgeText(
+      {
+        text: "Work!",
+      }
+    );
+    console.log("ok")
+    /*
+    
+    const canvas = new OffscreenCanvas(16, 16);
+const context = canvas.getContext('2d');
+context.clearRect(0, 0, 16, 16);
+context.fillStyle = '#00FF00';  // Green
+context.fillRect(0, 0, 16, 16);
+const imageData = context.getImageData(0, 0, 16, 16);
+    */
+
+return;
     if (changeInfo.status === 'complete') {
       if (localStorage.getItem("Debugging1") == "true") {
         executeScript(
@@ -64,8 +81,10 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
     }
     return;
   } else {
-    chrome.browserAction.setBadgeText({
-      'text': ''
-    });
+    chrome.action.setBadgeText(
+      {
+        text: "",
+      }
+    );
   }
 });
