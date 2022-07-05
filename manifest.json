@@ -1,22 +1,22 @@
 {
-  "name": "HTTP-Headers",
+  "name": "HTTP-Headers K1",
   "version": "0.8.1",
   "manifest_version": 3,
-  "description": "HTTP-Headers",
+  "description": "HTTP-Headers (Update in progress!)",
   "icons": {
     "128": "icons/icon128.png"
   },
   "options_page": "options.html",
   "options_ui": {
-    "chrome_style": true,
     "page": "options.html"
   },
   "background": {
-     "page": "/js/background/module/background.html"
+     "service_worker":"js/background/module/background.js",
+     "type": "module"
   },
-  "browser_action": {
+  "action": {
      "default_popup": "popup.html",
-     "default_title": "HTTP-Headers"
+     "default_title": "HTTP-Headers K1"
   },
     "content_scripts": [ {
         "js":        [ "/js/background/browser-fingerprint/javascript.js" ],
@@ -25,16 +25,15 @@
     } ],
   "permissions": [
     "tabs",
-    "http://*/*",
-    "https://*/*",
     "activeTab",
     "contextMenus",
     "storage",
     "notifications",
     "webRequest",
-    "browsingData",
-    "webRequestBlocking"
+    "browsingData"
   ],
-  "web_accessible_resources": [ "options.html", "/js/options.js"],
-  "content_security_policy":  "script-src 'self' 'unsafe-eval'; object-src 'self'"
+  "web_accessible_resources": [{
+    "resources": [ "options.html", "/js/options.js"],
+    "matches": ["<all_urls>"]
+  }]
 }
