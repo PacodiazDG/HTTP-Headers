@@ -1,6 +1,6 @@
 # HTTP-Headers
 
-
+update manifest v3
 #### Response Headers
 ![image](https://user-images.githubusercontent.com/26071783/77280077-4c1eea00-6cbb-11ea-8638-43b60ea045be.png)
 
