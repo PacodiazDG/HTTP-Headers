@@ -1,10 +1,5 @@
-function codeinjection(argument) {
-  const script = document.createElement('script');
-  script.type = 'text/javascript';
-  script.innerHTML = argument;
-  document.getElementsByTagName('html')[0].appendChild(script);
-  return true;
-}
+
+/*
 const code = (userAgent) => {
   'use strict';
   return `navigator.__defineGetter__('userAgent', function(){
@@ -27,4 +22,17 @@ chrome.runtime.sendMessage('', (r) => {
   if (escapes != undefined) {
     console.log(codeinjection(code(escapes)));
   }
-});
+});*/
+
+async function coder(args) {
+  const keys = await chrome.storage.local.get(['Debugging1', 'Debugging2', 'UserAgent1', 'Debugging3', 'Debugging4']);
+  console.log(keys.Debugging1)
+  if (keys.Debugging1) {
+    EnableConextMenu()
+  }
+  if (keys.Debugging2) {
+    EnableConextMenu()
+  }
+
+
+}

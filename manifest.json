@@ -6,23 +6,52 @@
   "icons": {
     "128": "icons/icon128.png"
   },
+  "content_security_policy": {
+    "sandbox": "sandbox allow-scripts; script-src 'none' https://example.com"
+  },
   "options_page": "options.html",
   "options_ui": {
     "page": "options.html"
   },
   "background": {
-     "service_worker":"js/background/module/background.js",
-     "type": "module"
+    "service_worker": "js/background/module/background.js",
+    "type": "module",
+    "permissions": [
+      "contextMenus",
+      "scripting",
+      "storage",
+      "declarativeContent",
+      "activeTab",
+      "<all_urls>"
+    ],
+    "host_permissions": [
+      "https://*/*",
+      "http://*/*"
+    ]
   },
+  "host_permissions": [
+    "https://*/*",
+    "http://*/*"
+  ],
   "action": {
-     "default_popup": "popup.html",
-     "default_title": "HTTP-Headers K1"
+    "default_popup": "popup.html",
+    "default_title": "HTTP-Headers K1"
   },
-    "content_scripts": [ {
-        "js":        [ "/js/background/browser-fingerprint/javascript.js" ],
-        "matches":   [ "<all_urls>"],
-        "run_at":    "document_start"
-    } ],
+  "content_scripts": [
+    {
+      "js": [
+        "/js/background/inject/javascript.js",
+        "/js/background/inject/enableContextMenu.js"
+      ],
+      "matches": [
+        "<all_urls>",
+        "https://*/*",
+        "http://*/*"
+      ],
+      "match_origin_as_fallback": true,
+      "run_at": "document_start"
+    }
+  ],
   "permissions": [
     "tabs",
     "activeTab",
@@ -30,10 +59,18 @@
     "storage",
     "notifications",
     "webRequest",
-    "browsingData"
+    "browsingData",
+    "scripting"
   ],
-  "web_accessible_resources": [{
-    "resources": [ "options.html", "/js/options.js"],
-    "matches": ["<all_urls>"]
-  }]
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "options.html",
+        "/js/options.js"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ]
 }

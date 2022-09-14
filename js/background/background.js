@@ -1,6 +1,5 @@
 "use strict";
 import {
-  code,
   isValidURL
 } from './module/module.js';
 import {
@@ -11,7 +10,7 @@ import {
 } from './module/inyeccion.js';
 import {
   UserAgent
-} from './browser-fingerprint/user-agent.js';
+} from './inject/user-agent.js';
 
 //Esta funcion Cambia el fingerPrinting del navegador a nivel javascript
 /*
@@ -32,46 +31,35 @@ chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
   }
   var executeScript = (codes) => {
     'use strict';
-    chrome.tabs.executeScript(tabId, {
-      allFrames: true,
-      code: code(codes)
-    });
-    return true
+    console.log(tabId)
+    chrome.scripting.executeScript({
+      target:{tabId: tabId,allFrames: true},
+      func: (codes)=>{ coder(codes)},
+      args: [codes]
+    },
+    () => {});
   };
   if ((await chrome.storage.local.get(['status'])).status === true) {
-
-    chrome.action.setBadgeText(
-      {
-        text: "Work!",
-      }
-    );
-    console.log("ok")
-    /*
-    
-    const canvas = new OffscreenCanvas(16, 16);
-const context = canvas.getContext('2d');
-context.clearRect(0, 0, 16, 16);
-context.fillStyle = '#00FF00';  // Green
-context.fillRect(0, 0, 16, 16);
-const imageData = context.getImageData(0, 0, 16, 16);
-    */
-
-return;
+    chrome.action.setBadgeText({ text: "Work!", });
     if (changeInfo.status === 'complete') {
-      if (localStorage.getItem("Debugging1") == "true") {
+      const keys = await chrome.storage.local.get(['Debugging1', 'Debugging2', 'UserAgent1', 'Debugging3', 'Debugging4']);
+      if (keys.Debugging1 == true) {
         executeScript(
-          'var highestTimeoutId = setTimeout(";");for (var i = 0 ; i < highestTimeoutId ; i++) {clearTimeout(i);}var setTimeout=undefined;'
-          );
+          `var highestTimeoutId = setTimeout(";");
+           for (var i = 0 ; i < highestTimeoutId ; i++)
+           {clearTimeout(i);}
+           var setTimeout=undefined;`
+        );
       }
-      if (localStorage.getItem("Debugging2") == "true") {
+      if (keys.Debugging2 == true) {
         executeScript(enableContextMenus());
       }
-      if (localStorage.getItem("UserAgent1") == "true") {
+      if (keys.UserAgent1 == true) {
         UserAgent();
       }
-      if (localStorage.getItem("Debugging3") == "true") {
+      if (keys.Debugging3 == true) {
         var control;
-        if (localStorage.getItem("Debugging4") == "true") {
+        if (keys.Debugging4 == true) {
           control = Debugging7control1();
         } else {
           control = Debugging7control2();
@@ -79,7 +67,6 @@ return;
         executeScript(control);
       }
     }
-    return;
   } else {
     chrome.action.setBadgeText(
       {
