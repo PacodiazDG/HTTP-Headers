@@ -9,6 +9,7 @@ function gos() {
   document.getElementById('url').value = params.split('?')[0] + '?';
   for (let i = 1; i <= golb; i++) {
     if (i % 2 == 0) {
+      console.log(document.getElementById(i));
       document.getElementById('url').value +=
       `${encodeURIComponent(document.getElementById(i).value)}`;
     } else {
@@ -53,7 +54,7 @@ chrome.tabs.query({
   params = getSearchParameters();
   params = atob(params.q);
   document.getElementById('root').innerHTML =
-   `<div class="alert alert-dark" role="alert"><p class="text">
+   `<div class="alert alert-light" role="alert"><p class="text">
  ${xssFilters.inHTMLData(params)}</p>
 </div>`;
   document.getElementById('url').value = params.split('?')[0] + '?';
@@ -71,8 +72,7 @@ chrome.tabs.query({
     ${xssFilters.inUnQuotedAttr(Object.keys(params2)[n])}</span>
   </div>
   <input type="text" class="form-control" value="${
-  xssFilters.inUnQuotedAttr(jsonparams[k])}" id="${golb = golb + 1}
-    ">
+  xssFilters.inUnQuotedAttr(jsonparams[k])}" id="${golb = golb + 1}">
   <div class="input-group-append">
   </div>
 </div>
