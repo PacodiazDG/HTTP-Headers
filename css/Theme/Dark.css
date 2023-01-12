@@ -3,7 +3,7 @@ body {
   min-width: 200px;
   width: auto;
   border-radius: 4px;
-  background-color: hsl(0, 0%, 12%) !important;
+  background-color: hsl(0, 0%, 0%) !important;
   border-color: #121316 !important
 }
 

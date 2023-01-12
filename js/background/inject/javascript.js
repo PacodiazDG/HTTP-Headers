@@ -26,13 +26,16 @@ chrome.runtime.sendMessage('', (r) => {
 
 async function coder(args) {
   const keys = await chrome.storage.local.get(['Debugging1', 'Debugging2', 'UserAgent1', 'Debugging3', 'Debugging4']);
-  console.log(keys.Debugging1)
   if (keys.Debugging1) {
     EnableConextMenu()
   }
   if (keys.Debugging2) {
     EnableConextMenu()
   }
+  console.log(143433);
+  window.setTimeout=undefined;  
 
 
+  console.log(window.location.href);
+  console.log(setTimeout);
 }

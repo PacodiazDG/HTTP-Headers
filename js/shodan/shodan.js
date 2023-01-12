@@ -1,10 +1,8 @@
 'use strict';
-const keyshodan = localStorage.getItem('keyshodan');
-const Enableshodan1 = localStorage.getItem('Enableshodan1');
 
 /** **************************************************************/
 
-async function ipget(argument) {
+async function ipget(argument,keyshodan) {
   try {
     if (await argument == '-1') {
       document.getElementById('infodns').innerHTML +=
@@ -49,8 +47,8 @@ async function ipget(argument) {
 }
 /** ***********************************************************/
 
-async function dnsget(argument) {
-  if (Enableshodan1 === 'false') {
+async function dnsget(argument,keyshodan) {
+  if (await chrome.storage.sync.get('Enableshodan1') === 'false') {
     document.getElementById('ip').innerHTML =
      `<span class="badge badge-warning">Shodan is disabled</span>`;
     return -1;
@@ -79,7 +77,7 @@ async function dnsget(argument) {
   }
 }
 /** ***************************************************************/
-async function getmyipaddres() {
+async function getmyipaddres(keyshodan) {
   const respuestaclass = new Httprequest(`https://api.shodan.io/tools/myip?key=${keyshodan}`, 'GET');
   const rsq = await respuestaclass.httpsend();
   document.getElementById('my-ip').innerHTML =
@@ -90,11 +88,12 @@ async function getmyipaddres() {
 chrome.tabs.query({
   active: true,
   currentWindow: true,
-}, (tabs) => {
+}, async (tabs) => {
+  const keyshodan = (await chrome.storage.local.get("keyshodan")).keyshodan;
   const url = tabs[0].url;
   const tabname = (new URL(url)).hostname;
-  const ipad = dnsget(tabname);
-  ipget(ipad);
-  setTimeout(getmyipaddres, 2000);
+  const ipad = dnsget(tabname,keyshodan);
+  ipget(ipad,keyshodan);
+  setTimeout(getmyipaddres(keyshodan), 2000);
 });
 /** ***************************************************************/
