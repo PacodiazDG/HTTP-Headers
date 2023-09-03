@@ -1,6 +1,5 @@
 "use strict";
 import {
-  code,
   isValidURL
 } from './module/module.js';
 import {
@@ -11,8 +10,10 @@ import {
 } from './module/inyeccion.js';
 import {
   UserAgent
-} from './browser-fingerprint/user-agent.js';
+} from './inject/user-agent.js';
 
+//Esta funcion Cambia el fingerPrinting del navegador a nivel javascript
+/*
 chrome.runtime.onMessage.addListener((msg, sender_info, Reply) => {
   if (localStorage.getItem("UserAgent1javasc1") == "true" && localStorage.getItem("status") === "true") {
     console.log(true);
@@ -21,40 +22,48 @@ chrome.runtime.onMessage.addListener((msg, sender_info, Reply) => {
     Reply(undefined);
   }
 });
-chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+*/
+
+//Escucha todos los eventos 
+
+
+chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
   if (!isValidURL(tab.url)) {
     return;
   }
+  
   var executeScript = (codes) => {
     'use strict';
-    chrome.tabs.executeScript(tabId, {
-      allFrames: true,
-      code: code(codes)
-    });
-    return true
+    console.log(tabId)
+    chrome.scripting.executeScript({
+      injectImmediately:true,
+      target:{tabId: tabId,allFrames: true},
+      func: (codes)=>{ coder(codes)},
+      args: [codes]
+    },
+    () => {});
   };
-  if (localStorage.getItem("status") === "true") {
-    chrome.browserAction.setBadgeText({
-      text: "Ok"
-    });
-    chrome.browserAction.setBadgeBackgroundColor({
-      color: "#008000"
-    });
+  if ((await chrome.storage.local.get(['status'])).status === true) {
+    chrome.action.setBadgeText({ text: "Work!", });
     if (changeInfo.status === 'complete') {
-      if (localStorage.getItem("Debugging1") == "true") {
+      const keys = await chrome.storage.local.get(['Debugging1', 'Debugging2', 'UserAgent1', 'Debugging3', 'Debugging4']);
+      if (keys.Debugging1 == true) {
         executeScript(
-          'var highestTimeoutId = setTimeout(";");for (var i = 0 ; i < highestTimeoutId ; i++) {clearTimeout(i);}var setTimeout=undefined;'
-          );
+          `var highestTimeoutId = setTimeout(";");
+           for (var i = 0 ; i < highestTimeoutId ; i++)
+           {clearTimeout(i);}
+           var setTimeout=undefined;`
+        );
       }
-      if (localStorage.getItem("Debugging2") == "true") {
+      if (keys.Debugging2 == true) {
         executeScript(enableContextMenus());
       }
-      if (localStorage.getItem("UserAgent1") == "true") {
+      if (keys.UserAgent1 == true) {
         UserAgent();
       }
-      if (localStorage.getItem("Debugging3") == "true") {
+      if (keys.Debugging3 == true) {
         var control;
-        if (localStorage.getItem("Debugging4") == "true") {
+        if (keys.Debugging4 == true) {
           control = Debugging7control1();
         } else {
           control = Debugging7control2();
@@ -62,10 +71,11 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
         executeScript(control);
       }
     }
-    return;
   } else {
-    chrome.browserAction.setBadgeText({
-      'text': ''
-    });
+    chrome.action.setBadgeText(
+      {
+        text: "",
+      }
+    );
   }
 });
