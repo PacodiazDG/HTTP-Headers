@@ -1,9 +1,9 @@
 body {
-    background-color: rgb(255, 255, 255) !important ;
-    color: #008000;
-    overflow-x: hidden;
-  }
-  
-  .text {
-    text-overflow: ellipsis;
-  }
+  background-color: rgb(255, 255, 255) !important;
+  color: #008000;
+  overflow-x: hidden;
+}
+
+.text {
+  text-overflow: ellipsis;
+}
